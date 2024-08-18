@@ -6,7 +6,7 @@
 
 ## 开发工具
 
-推荐 HBuilder 开发：
+推荐 HBuilder 开发
 
 
 ## 启动
