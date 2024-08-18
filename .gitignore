@@ -1,0 +1,9 @@
+unpackage/*
+node_modules/*
+deploy.sh
+.hbuilderx/
+.vscode/
+yarn.lock
+package-lock.json
+*.keystore
+pnpm-lock.yaml
