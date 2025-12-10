@@ -9,7 +9,7 @@
         <uni-tag
           class="ss-m-r-10"
           size="small"
-          custom-style="background-color: var(--ui-BG-Main); border-color: var(--ui-BG-Main); color: #fff;"
+          custom-style="background-color: var(--ui-BG-Main); border-radius: 8px;  border-color: var(--ui-BG-Main); color: #fff;"
           v-if="props.item.defaultStatus"
           text="默认"
         />
@@ -26,7 +26,7 @@
     <slot>
       <button class="ss-reset-button edit-btn" @tap.stop="onEdit">
         <view class="edit-icon ss-flex ss-row-center ss-col-center">
-          <image :src="sheep.$url.static('/static/img/shop/user/address/edit.png')" />
+          <image :src="sheep.$url.static('/static/image/mall/user/address/edit.png')" />
         </view>
       </button>
     </slot>
@@ -93,14 +93,14 @@
   }
 
   .edit-btn {
-    width: 44rpx;
-    height: 44rpx;
+    width: 48rpx;
+    height: 48rpx;
     background: $gray-f;
-    border-radius: 50%;
+    //border-radius: 50%;
 
     .edit-icon {
-      width: 24rpx;
-      height: 24rpx;
+      width: 48rpx;
+      height: 48rpx;
     }
   }
   image {

@@ -5,6 +5,7 @@ import cart from './cart';
 import app from './app';
 import { showAuthModal } from '@/sheep/hooks/useModal';
 import UserApi from '@/sheep/api/member/user';
+import LevelApi from '@/sheep/api/member/level';
 import PayWalletApi from '@/sheep/api/pay/wallet';
 import OrderApi from '@/sheep/api/trade/order';
 import CouponApi from '@/sheep/api/promotion/coupon';
@@ -16,6 +17,16 @@ const defaultUserInfo = {
   gender: 0, // 性别
   mobile: '', // 手机号
   point: 0, // 积分
+};
+
+// 默认会员等级信息
+const defaultUserLevel = {
+  name: '',
+  level: 0, // 等级
+  experience: 0, // 经验
+  discountPercent: 0, // 折扣
+  icon: '', // 图标
+  backgroundUrl: '', // 背景图
 };
 
 // 默认钱包信息
@@ -43,6 +54,7 @@ const user = defineStore({
     userWallet: clone(defaultUserWallet), // 用户钱包信息
     isLogin: !!uni.getStorageSync('token'), // 登录状态
     numData: cloneDeep(defaultNumData), // 用户其他数据
+	userLevel: clone(defaultUserLevel), //会员等级
     lastUpdateTime: 0, // 上次更新时间
   }),
 
@@ -56,6 +68,15 @@ const user = defineStore({
       this.userInfo = data;
       return Promise.resolve(data);
     },
+	
+	// 获取会员等级
+	async getLevel() {
+	   const { code, data } = await LevelApi.getLevelList();
+	   if (code !== 0) {
+		 return;
+	   }
+	   return Promise.resolve(data);
+	},
 
     // 获得用户钱包
     async getWallet() {
@@ -121,6 +142,7 @@ const user = defineStore({
       this.setToken();
       // 清空用户相关的缓存
       this.userInfo = clone(defaultUserInfo);
+	    this.userLevel = clone(defaultUserLevel);
       this.userWallet = clone(defaultUserWallet);
       this.numData = cloneDeep(defaultNumData);
       // 清空购物车的缓存

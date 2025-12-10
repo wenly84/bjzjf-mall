@@ -5,7 +5,7 @@
     <view v-if="state.showShareGuide" class="guide-wrap">
       <image
         class="guide-image"
-        :src="sheep.$url.static('/static/img/shop/share/share_guide.png')"
+        :src="sheep.$url.static('/static/image/mall/share/share_guide.png')"
       />
     </view>
 
@@ -22,7 +22,7 @@
           >
             <image
               class="share-img"
-              :src="sheep.$url.static('/static/img/shop/share/share_wx.png')"
+              :src="sheep.$url.static('/static/image/mall/share/share_wx.png')"
               mode=""
             />
             <text class="share-title">微信好友</text>
@@ -36,7 +36,7 @@
           >
             <image
               class="share-img"
-              :src="sheep.$url.static('/static/img/shop/share/share_poster.png')"
+              :src="sheep.$url.static('/static/image/mall/share/share_poster.png')"
               mode=""
             />
             <text class="share-title">生成海报</text>
@@ -50,7 +50,7 @@
           >
             <image
               class="share-img"
-              :src="sheep.$url.static('/static/img/shop/share/share_link.png')"
+              :src="sheep.$url.static('/static/image/mall/share/share_link.png')"
               mode=""
             />
             <text class="share-title">复制链接</text>

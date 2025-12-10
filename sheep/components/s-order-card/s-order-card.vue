@@ -16,7 +16,7 @@
         absolute="rightTop"
         size="small"
       >
-        <image class="item-icon" :src="sheep.$url.static(item.icon)" mode="aspectFit" />
+        <image class="item-icon" :src="item.icon" mode="aspectFit" />
       </uni-badge>
       <view class="menu-title ss-m-t-28">{{ item.title }}</view>
     </view>
@@ -34,7 +34,7 @@
     {
       title: '待付款',
       value: '1',
-      icon: '/static/img/shop/order/no_pay.png',
+      icon: '/static/images/nopay.png',
       path: '/pages/order/list',
       type: 'unpaid',
       count: 'unpaidCount',
@@ -42,7 +42,7 @@
     {
       title: '待收货',
       value: '3',
-      icon: '/static/img/shop/order/no_take.png',
+      icon: '/static/images/nodelivery.png',
       path: '/pages/order/list',
       type: 'noget',
       count: 'deliveredCount',
@@ -50,7 +50,7 @@
     {
       title: '待评价',
       value: '4',
-      icon: '/static/img/shop/order/no_comment.png',
+      icon: '/static/images/rate.png',
       path: '/pages/order/list',
       type: 'nocomment',
       count: 'uncommentedCount',
@@ -58,7 +58,7 @@
     {
       title: '售后单',
       value: '0',
-      icon: '/static/img/shop/order/change_order.png',
+      icon: '/static/images/afterpay.png',
       path: '/pages/order/aftersale/list',
       type: 'aftersale',
       count: 'afterSaleCount',
@@ -66,7 +66,7 @@
     {
       title: '全部订单',
       value: '0',
-      icon: '/static/img/shop/order/all_order.png',
+      icon: '/static/images/orders.png',
       path: '/pages/order/list',
     },
   ];

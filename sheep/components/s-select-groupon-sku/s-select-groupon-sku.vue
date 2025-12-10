@@ -16,7 +16,9 @@
             <view class="tig ss-flex ss-col-center">
               <view class="tig-icon ss-flex ss-col-center ss-row-center">
                 <view class="groupon-tag">
-                  <image :src="sheep.$url.static('/static/img/shop/goods/groupon-tag-white.png')" />
+                  <image
+                    :src="sheep.$url.static('/static/image/mall/goods/groupon-tag-white.png')"
+                  />
                 </view>
               </view>
               <view class="tig-title">拼团价</view>
@@ -96,7 +98,7 @@
   import sheep from '@/sheep';
   import { convertProductPropertyList, fen2yuan } from '@/sheep/hooks/useGoods';
 
-  const headerBg = sheep.$url.css('/static/img/shop/goods/groupon-btn-long.png');
+  const headerBg = sheep.$url.css('/static/image/mall/goods/groupon-btn-long.png');
   const emits = defineEmits(['change', 'addCart', 'buy', 'close', 'ladder']);
   const props = defineProps({
     show: {
@@ -310,7 +312,7 @@
     width: 100%;
     height: 80rpx;
     border-radius: 40rpx;
-    background: linear-gradient(90deg, #ff6000, #fe832a);
+    background: linear-gradient(to right, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     color: #fff;
   }
   .btn-tox {
@@ -337,8 +339,8 @@
   .origin-price-btn {
     width: 370rpx;
     height: 80rpx;
-    background: rgba(#ff5651, 0.1);
-    color: #ff6000;
+    background: var(--ui-BG-Main-light);
+    color: var(--ui-BG-Main);
     border-radius: 40rpx 0px 0px 40rpx;
     line-height: normal;
     font-size: 24rpx;
@@ -389,7 +391,7 @@
         line-height: 42rpx;
         position: relative;
         .tig {
-          border: 2rpx solid #ff6000;
+          border: 2rpx solid var(--ui-BG-Main);
           border-radius: 4rpx;
           width: 126rpx;
           height: 38rpx;
@@ -400,7 +402,7 @@
           .tig-icon {
             width: 40rpx;
             height: 40rpx;
-            background: #ff6000;
+            background: var(--ui-BG-Main);
             margin-left: -2rpx;
             border-radius: 4rpx 0 0 4rpx;
 
@@ -414,7 +416,7 @@
             font-size: 24rpx;
             font-weight: 500;
             line-height: normal;
-            color: #ff6000;
+            color: var(--ui-BG-Main);
             width: 86rpx;
             display: flex;
             justify-content: center;
@@ -429,7 +431,7 @@
       .price-text {
         font-size: 30rpx;
         font-weight: 500;
-        color: $red;
+        color: var(--ui-BG-Main);
         font-family: OPPOSANS;
 
         &::before {
@@ -472,7 +474,7 @@
         }
 
         .checked-btn {
-          background: linear-gradient(90deg, #ff6000, #fe832a);
+          background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
           font-weight: 500;
           color: #ffffff;
         }

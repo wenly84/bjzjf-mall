@@ -1,7 +1,7 @@
 <!-- 售后列表 -->
 <template>
   <s-layout title="售后列表">
-    <!-- tab -->
+    <!-- tab栏 -->
     <su-sticky bgColor="#fff">
       <su-tabs
         :list="tabMaps"
@@ -10,7 +10,14 @@
         :current="state.currentTab"
       />
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/data-empty.png" text="暂无数据" />
+    
+    <!-- 如果没有数据 -->
+    <s-empty
+      v-if="state.pagination.total === 0"
+      icon="/static/images/data-empty.png"
+      text="暂无数据"
+    />
+    
     <!-- 列表 -->
     <view v-if="state.pagination.total > 0">
       <view
@@ -19,16 +26,21 @@
         :key="order.id"
         @tap="sheep.$router.go('/pages/order/aftersale/detail', { id: order.id })"
       >
+        <!-- 订单头部 -->
         <view class="order-head ss-flex ss-col-center ss-row-between">
           <text class="no">服务单号：{{ order.no }}</text>
           <text class="state">{{ formatAfterSaleStatus(order) }}</text>
         </view>
+        
+        <!-- 商品项 -->
         <s-goods-item
           :img="order.picUrl"
           :title="order.spuName"
           :skuText="order.properties.map((property) => property.valueName).join(' ')"
           :price="order.refundPrice"
         />
+        
+        <!-- 申请信息 -->
         <view class="apply-box ss-flex ss-col-center ss-row-between border-bottom ss-p-x-20">
           <view class="ss-flex ss-col-center">
             <view class="title ss-m-r-20">{{ order.way === 10 ? '仅退款' : '退款退货' }}</view>
@@ -36,19 +48,24 @@
           </view>
           <text class="_icon-forward"></text>
         </view>
+
+        <!-- 操作按钮 -->
         <view class="tool-btn-box ss-flex ss-col-center ss-row-right ss-p-r-20">
-          <!-- TODO 功能缺失：填写退货信息 -->
+          <!-- 取消申请按钮 -->
           <view>
             <button
               class="ss-reset-button tool-btn"
               @tap.stop="onApply(order.id)"
               v-if="order?.buttons.includes('cancel')"
-              >取消申请</button
             >
+              取消申请
+            </button>
           </view>
         </view>
       </view>
     </view>
+
+    <!-- 上拉加载更多 -->
     <uni-load-more
       v-if="state.pagination.total > 0"
       :status="state.loadStatus"
@@ -59,6 +76,7 @@
     />
   </s-layout>
 </template>
+
 
 <script setup>
   import sheep from '@/sheep';
@@ -85,28 +103,13 @@
     loadStatus: '',
   });
 
-  // TODO 智匠坊科技：优化点，增加筛选
+  // TODO: 优化：增加筛选功能
   const tabMaps = [
     {
       name: '全部',
       value: 'all',
     },
-    // {
-    //   name: '申请中',
-    //   value: 'nooper',
-    // },
-    // {
-    //   name: '处理中',
-    //   value: 'ing',
-    // },
-    // {
-    //   name: '已完成',
-    //   value: 'completed',
-    // },
-    // {
-    //   name: '已拒绝',
-    //   value: 'refuse',
-    // },
+    // 更多筛选项可以在这里添加
   ];
 
   // 切换选项卡
@@ -116,11 +119,11 @@
     getOrderList();
   }
 
-  // 获取售后列表
+  // 获取售后订单列表
   async function getOrderList() {
     state.loadStatus = 'loading';
     let { data, code } = await AfterSaleApi.getAfterSalePage({
-      // type: tabMaps[state.currentTab].value,
+      // type: tabMaps[state.currentTab].value, // 目前没有筛选条件
       pageNo: state.pagination.pageNo,
       pageSize: state.pagination.pageSize,
     });
@@ -133,6 +136,7 @@
     state.loadStatus = state.pagination.list.length < state.pagination.total ? 'more' : 'noMore';
   }
 
+  // 取消申请
   function onApply(orderId) {
     uni.showModal({
       title: '提示',
@@ -150,6 +154,7 @@
     });
   }
 
+  // 页面加载时获取订单列表
   onLoad(async (options) => {
     if (options.type) {
       state.currentTab = options.type;
@@ -157,7 +162,7 @@
     await getOrderList();
   });
 
-  // 加载更多
+  // 上拉加载更多
   function loadMore() {
     if (state.loadStatus === 'noMore') {
       return;
@@ -166,7 +171,7 @@
     getOrderList();
   }
 
-  // 上拉加载更多
+  // 上拉触底加载更多
   onReachBottom(() => {
     loadMore();
   });
@@ -176,11 +181,13 @@
   .list-box {
     background-color: #fff;
 
+    /* 订单头部样式 */
     .order-head {
       padding: 0 25rpx;
       height: 77rpx;
     }
 
+    /* 申请信息框样式 */
     .apply-box {
       height: 82rpx;
 
@@ -194,6 +201,7 @@
       }
     }
 
+    /* 操作按钮样式 */
     .tool-btn-box {
       height: 100rpx;
 

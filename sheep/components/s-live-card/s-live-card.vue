@@ -104,15 +104,15 @@
   const state = reactive({
     liveStatus: {
       101: {
-        img: sheep.$url.static('/static/img/shop/app/mplive/living.png'),
+        img: sheep.$url.static('/static/image/mall/app/mplive/living.png'),
         title: '直播中',
       },
       102: {
-        img: sheep.$url.static('/static/img/shop/app/mplive/start.png'),
+        img: sheep.$url.static('/static/image/mall/app/mplive/start.png'),
         title: '未开始',
       },
       103: {
-        img: sheep.$url.static('/static/img/shop/app/mplive/ended.png'),
+        img: sheep.$url.static('/static/image/mall/app/mplive/ended.png'),
         title: '已结束',
       },
     },
@@ -164,6 +164,7 @@
     .md-img-box {
       width: 100%;
       height: 100%;
+      border-radius: 8px;
       object-fit: cover;
     }
 

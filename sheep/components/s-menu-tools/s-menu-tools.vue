@@ -36,37 +36,37 @@
   const list = [
     {
       url: '/pages/index/index',
-      icon: '/static/img/shop/tools/home.png',
+      icon: '/static/image/mall/tools/home.png',
       title: '首页',
     },
     {
       url: '/pages/index/search',
-      icon: '/static/img/shop/tools/search.png',
+      icon: '/static/image/mall/tools/search.png',
       title: '搜索',
     },
     {
       url: '/pages/index/user',
-      icon: '/static/img/shop/tools/user.png',
+      icon: '/static/image/mall/tools/user.png',
       title: '个人中心',
     },
     {
       url: '/pages/index/cart',
-      icon: '/static/img/shop/tools/cart.png',
+      icon: '/static/image/mall/tools/cart.png',
       title: '购物车',
     },
     {
       url: '/pages/user/goods-log',
-      icon: '/static/img/shop/tools/browse.png',
+      icon: '/static/image/mall/tools/browse.png',
       title: '浏览记录',
     },
     {
       url: '/pages/user/goods-collect',
-      icon: '/static/img/shop/tools/collect.png',
+      icon: '/static/image/mall/tools/collect.png',
       title: '我的收藏',
     },
     {
       url: '/pages/chat/index',
-      icon: '/static/img/shop/tools/service.png',
+      icon: '/static/image/mall/tools/service.png',
       title: '客服',
     },
   ];

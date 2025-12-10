@@ -4,8 +4,7 @@
     <!--顶部背景图-->
     <view
       class="page-bg"
-      :style="[{ marginTop: '-' + Number(statusBarHeight + 88) + 'rpx' }]"
-    ></view>
+      :style="[{ marginTop: '-' + Number(statusBarHeight + 88) + 'rpx' }]"></view>
     <!-- 时间段轮播图 -->
     <view class="header" v-if="activeTimeConfig?.sliderPicUrls?.length > 0">
       <swiper
@@ -15,8 +14,7 @@
         interval="3000"
         duration="1500"
         indicator-color="rgba(255,255,255,0.6)"
-        indicator-active-color="#fff"
-      >
+        indicator-active-color="#fff">
         <block v-for="(picUrl, index) in activeTimeConfig.sliderPicUrls" :key="index">
           <swiper-item class="borRadius14">
             <image :src="picUrl" class="slide-image borRadius14" lazy-load />
@@ -28,18 +26,15 @@
     <view class="flex align-center justify-between ss-p-25">
       <!-- 左侧图标 -->
       <view class="time-icon">
-        <!-- TODO 智匠坊科技：图片统一维护 -->
         <image
-          class="ss-w-100 ss-h-100"
-          src="http://mall.bjzjf.hansi.site/static/images/priceTag.png"
-        />
+          class="ss-w-100 ss-h-100" style="border-radius: 4px;"
+          :src="sheep.$url.static('/static/image/mall/goods/priceTag.png')"/>
       </view>
       <scroll-view
         class="time-list"
         :scroll-into-view="activeTimeElId"
         scroll-x
-        scroll-with-animation
-      >
+        scroll-with-animation>
         <view
           v-for="(config, index) in timeConfigList"
           :key="index"
@@ -62,8 +57,7 @@
         <view class="content-header-box ss-flex ss-row-center">
           <view
             class="countdown-box ss-flex"
-            v-if="activeTimeConfig?.status === TimeStatusEnum.STARTED"
-          >
+            v-if="activeTimeConfig?.status === TimeStatusEnum.STARTED">
             <view class="countdown-title ss-m-r-12">距结束</view>
             <view class="ss-flex countdown-time">
               <view class="ss-flex countdown-h">{{ countDown.h }}</view>
@@ -142,7 +136,7 @@
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
   const pageHeight =
     (safeArea.height + safeAreaInsets.bottom) * 2 + statusBarHeight - sheep.$platform.navbar - 350;
-  const headerBg = sheep.$url.css('/static/img/shop/goods/seckill-header.png');
+  const headerBg = sheep.$url.css('/static/image/mall/goods/seckill-header.png');
 
   // 商品控件显示的字段（不显示库存、销量。改为显示自定义的进度条）
   const goodsFields = {
@@ -256,7 +250,7 @@
   .page-bg {
     width: 100%;
     height: 458rpx;
-    background: v-bind(headerBg) no-repeat;
+    background: v-bind(headerBg) no-repeat, linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 100% 100%;
   }
 

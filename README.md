@@ -13,11 +13,11 @@
 * npm install --legacy-peer-deps --registry https://registry.npmmirror.com/
 
 ## 拉取代码
-* git pull https://github.com/wenly84/bjzjf-mall.git
+* git pull https://gitee.com/hansi-cms/bjzjf-mall.git
 * git add .
 * git commit -m "init"
 * git branch -M master
-* git remote add origin https://github.com/wenly84/bjzjf-mall.git
+* git remote add origin https://gitee.com/hansi-cms/bjzjf-mall.git
 * git push -u origin master
 
 

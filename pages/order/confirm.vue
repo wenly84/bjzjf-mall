@@ -40,29 +40,41 @@
             </text>
           </view>
         </view>
+		        <view
+		          v-if="state.orderPayload.pointActivityId"
+		          class="order-item ss-flex ss-col-center ss-row-between">
+		          <view class="item-title">兑换积分</view>
+		          <view class="ss-flex ss-col-center">
+		            <image
+		              :src="sheep.$url.static('/static/image/mall/goods/score.png')"
+		              class="score-img"/>
+		            <text class="item-value ss-m-r-24">
+		              {{ state.orderInfo.usePoint }}
+		            </text>
+		          </view>
+		        </view>
+
+
         <view
           class="order-item ss-flex ss-col-center ss-row-between"
-          v-if="state.orderInfo.type === 0"
-        >
+          v-if="state.orderInfo.type === 0 || state.orderPayload.pointActivityId">
           <view class="item-title">积分抵扣</view>
           <view class="ss-flex ss-col-center">
-            {{ state.pointStatus ? '剩余积分' : '当前积分' }}
+            {{ state.pointStatus || state.orderPayload.pointActivityId  ? '剩余积分' : '当前积分' }}
             <image
-              :src="sheep.$url.static('/static/img/shop/goods/score1.svg')"
-              class="score-img"
-            />
+              :src="sheep.$url.static('/static/image/mall/goods/score.png')"
+              class="score-img"/>
             <text class="item-value ss-m-r-24">
               {{
-                state.pointStatus
+                state.pointStatus || state.orderPayload.pointActivityId
                   ? state.orderInfo.totalPoint - state.orderInfo.usePoint
                   : state.orderInfo.totalPoint || 0
               }}
             </text>
-            <checkbox-group @change="changeIntegral">
+            <checkbox-group @change="changeIntegral" v-if="!state.orderPayload.pointActivityId">
               <checkbox
                 :checked="state.pointStatus"
-                :disabled="!state.orderInfo.totalPoint || state.orderInfo.totalPoint <= 0"
-              />
+                :disabled="!state.orderInfo.totalPoint || state.orderInfo.totalPoint <= 0"/>
             </checkbox-group>
           </view>
         </view>
@@ -82,8 +94,7 @@
         <!-- 门店自提时，需要填写姓名和手机号 -->
         <view
           class="order-item ss-flex ss-col-center ss-row-between"
-          v-if="addressState.deliveryType === 2"
-        >
+          v-if="addressState.deliveryType === 2">
           <view class="item-title">联系人</view>
           <view class="ss-flex ss-col-center">
             <uni-easyinput
@@ -113,18 +124,15 @@
         <!-- 优惠劵：只有 type = 0 普通订单（非拼团、秒杀、砍价），才可以使用优惠劵 -->
         <view
           class="order-item ss-flex ss-col-center ss-row-between"
-          v-if="state.orderInfo.type === 0"
-        >
+          v-if="state.orderInfo.type === 0">
           <view class="item-title">优惠券</view>
           <view class="ss-flex ss-col-center" @tap="state.showCoupon = true">
-            <text class="item-value text-red" v-if="state.orderPayload.couponId > 0">
+            <text class="item-value text-red" style="color:var(--ui-BG-Main)" v-if="state.orderPayload.couponId > 0">
               -￥{{ fen2yuan(state.orderInfo.price.couponPrice) }}
             </text>
-            <text
-              class="item-value"
-              :class="state.couponInfo.length > 0 ? 'text-red' : 'text-disabled'"
-              v-else
-            >
+            <text class="total-num" style="color:var(--ui-BG-Main)"
+              :style="state.couponInfo.length > 0 ? 'color:var(--ui-BG-Main)' : ''"
+              v-else>
               {{
                 state.couponInfo.length > 0 ? state.couponInfo.length + ' 张可用' : '暂无可用优惠券'
               }}
@@ -134,8 +142,7 @@
         </view>
         <view
           class="order-item ss-flex ss-col-center ss-row-between"
-          v-if="state.orderInfo.price.discountPrice > 0"
-        >
+          v-if="state.orderInfo.price.discountPrice > 0">
           <view class="item-title">活动优惠</view>
           <view class="ss-flex ss-col-center">
             <!--                @tap="state.showDiscount = true" TODO 智匠坊科技：后续要把优惠信息打进去 -->
@@ -147,11 +154,10 @@
         </view>
         <view
           class="order-item ss-flex ss-col-center ss-row-between"
-          v-if="state.orderInfo.price.vipPrice > 0"
-        >
+          v-if="state.orderInfo.price.vipPrice > 0">
           <view class="item-title">会员优惠</view>
           <view class="ss-flex ss-col-center">
-            <text class="item-value text-red">
+            <text class="total-num" style="color:var(--ui-BG-Main)">
               -￥{{ fen2yuan(state.orderInfo.price.vipPrice) }}
             </text>
           </view>
@@ -162,7 +168,7 @@
           共{{ state.orderInfo.items.reduce((acc, item) => acc + item.count, 0) }}件
         </view>
         <view>合计：</view>
-        <view class="total-num text-red"> ￥{{ fen2yuan(state.orderInfo.price.payPrice) }}</view>
+        <view class="total-num" style="color:var(--ui-BG-Main)"> ￥{{ fen2yuan(state.orderInfo.price.payPrice) }}</view>
       </view>
     </view>
 
@@ -185,7 +191,7 @@
     <su-fixed bottom :opacity="false" bg="bg-white" placeholder :noFixed="false" :index="200">
       <view class="footer-box border-top ss-flex ss-row-between ss-p-x-20 ss-col-center">
         <view class="total-box-footer ss-flex ss-col-center">
-          <view class="total-num ss-font-30 text-red">
+          <view class="total-num ss-font-30" style="color:var(--ui-BG-Main)">
             ￥{{ fen2yuan(state.orderInfo.price.payPrice) }}
           </view>
         </view>
@@ -201,13 +207,14 @@
 </template>
 
 <script setup>
-  import { reactive, ref } from 'vue';
+  import { reactive, ref, watch } from 'vue';
   import { onLoad } from '@dcloudio/uni-app';
   import AddressSelection from '@/pages/order/addressSelection.vue';
   import sheep from '@/sheep';
   import OrderApi from '@/sheep/api/trade/order';
-  import CouponApi from '@/sheep/api/promotion/coupon';
+  import TradeConfigApi from '@/sheep/api/trade/config';
   import { fen2yuan } from '@/sheep/hooks/useGoods';
+  import { DeliveryTypeEnum } from '@/sheep/util/const';
 
   const state = reactive({
     orderPayload: {},
@@ -224,8 +231,8 @@
 
   const addressState = ref({
     addressInfo: {}, // 选择的收货地址
-    deliveryType: 1, // 收货方式 1 - 快递配送；2 - 门店自提
-    isPickUp: true, // 门店自提是否开启 TODO puhui999: 默认开启，看看后端有开关的话接入
+    deliveryType: undefined, // 收货方式：1-快递配送，2-门店自提
+    isPickUp: true, // 门店自提是否开启
     pickUpInfo: {}, // 选择的自提门店信息
     receiverName: '', // 收件人名称
     receiverMobile: '', // 收件人手机
@@ -242,7 +249,7 @@
 
   // 选择优惠券
   async function onSelectCoupon(couponId) {
-    state.orderPayload.couponId = couponId || 0;
+    state.orderPayload.couponId = couponId;
     await getOrderInfo();
     state.showCoupon = false;
   }
@@ -289,6 +296,7 @@
       combinationActivityId: state.orderPayload.combinationActivityId,
       combinationHeadId: state.orderPayload.combinationHeadId,
       seckillActivityId: state.orderPayload.seckillActivityId,
+      pointActivityId: state.orderPayload.pointActivityId,
     });
     if (code !== 0) {
       return;
@@ -299,9 +307,15 @@
     }
 
     // 跳转到支付页面
-    sheep.$router.redirect('/pages/pay/index', {
-      id: data.payOrderId,
-    });
+    if (data.payOrderId && data.payOrderId > 0) {
+      sheep.$router.redirect('/pages/pay/index', {
+        id: data.payOrderId,
+      });
+    } else {
+      sheep.$router.redirect('/pages/order/detail', {
+        id: data.id,
+      });
+    }
   }
 
   // 检查库存 & 计算订单价格
@@ -319,40 +333,66 @@
       combinationActivityId: state.orderPayload.combinationActivityId,
       combinationHeadId: state.orderPayload.combinationHeadId,
       seckillActivityId: state.orderPayload.seckillActivityId,
+      pointActivityId: state.orderPayload.pointActivityId,
     });
     if (code !== 0) {
-      return;
+      return code;
     }
     state.orderInfo = data;
+    state.couponInfo = data.coupons || [];
     // 设置收货地址
     if (state.orderInfo.address) {
       addressState.value.addressInfo = state.orderInfo.address;
     }
-  }
-
-  // 获取可用优惠券
-  async function getCoupons() {
-    const { code, data } = await CouponApi.getMatchCouponList(
-      state.orderInfo.price.payPrice,
-      state.orderInfo.items.map((item) => item.spuId),
-      state.orderPayload.items.map((item) => item.skuId),
-      state.orderPayload.items.map((item) => item.categoryId),
-    );
-    if (code === 0) {
-      state.couponInfo = data;
-    }
+    return code;
   }
 
   onLoad(async (options) => {
+    // 解析参数
     if (!options.data) {
       sheep.$helper.toast('参数不正确，请检查！');
       return;
     }
     state.orderPayload = JSON.parse(options.data);
+
+    // 获取交易配置
+    const { data, code } = await TradeConfigApi.getTradeConfig();
+    if (code === 0) {
+      addressState.value.isPickUp = data.deliveryPickUpEnabled;
+    }
+
+    // 价格计算
+    // 情况一：先自动选择“快递物流”
+    addressState.value.deliveryType = DeliveryTypeEnum.EXPRESS.type;
+    let orderCode = await getOrderInfo();
+    if (orderCode === 0) {
+      return;
+    }
+    // 情况二：失败，再自动选择“门店自提”
+    if (addressState.value.isPickUp) {
+      addressState.value.deliveryType = DeliveryTypeEnum.PICK_UP.type;
+      let orderCode = await getOrderInfo();
+      if (orderCode === 0) {
+        return;
+      }
+    }
+    // 情况三：都失败，则不选择
+    addressState.value.deliveryType = undefined;
     await getOrderInfo();
-    await getCoupons();
+  });
+
+  // 使用 watch 监听地址和配送方式的变化
+  watch(addressState, async (newAddress, oldAddress) => {
+    // 如果收货地址或配送方式有变化，则重新计算价格
+    if (
+      newAddress.addressInfo.id !== oldAddress.addressInfo.id ||
+      newAddress.deliveryType !== oldAddress.deliveryType
+    ) {
+      await getOrderInfo();
+    }
   });
 </script>
+
 
 <style lang="scss" scoped>
   :deep() {
@@ -400,6 +440,7 @@
       font-size: 28rpx;
       font-weight: 500;
       font-family: OPPOSANS;
+	    color: var(--ui-BG-Main);
     }
 
     .text-disabled {
@@ -452,6 +493,7 @@
       color: $dark-9;
     }
   }
+  
 
   .title {
     font-size: 36rpx;
@@ -473,4 +515,5 @@
     font-size: 36rpx;
     color: #999999;
   }
+ 
 </style>

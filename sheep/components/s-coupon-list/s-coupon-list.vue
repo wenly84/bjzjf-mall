@@ -193,6 +193,6 @@
   }
 
   .price-text {
-    color: #ff0000;
+    color: var(--ui-BG-Main);
   }
 </style>

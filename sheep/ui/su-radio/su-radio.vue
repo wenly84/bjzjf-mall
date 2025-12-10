@@ -161,7 +161,7 @@
     &.check {
       .ui-radio-input {
         &::before {
-          font-family: 'colorui';
+          //font-family: 'colorui';
           content: '\e69f';
           width: 18px;
           height: 18px;

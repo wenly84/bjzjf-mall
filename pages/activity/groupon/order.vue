@@ -1,4 +1,3 @@
-<!-- 我的拼团订单列表 -->
 <template>
   <s-layout title="我的拼团">
     <su-sticky bgColor="#fff">
@@ -9,25 +8,25 @@
         :current="state.currentTab"
       ></su-tabs>
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/goods-empty.png" />
+    <s-empty
+      v-if="state.pagination.total === 0"
+      icon="/static/images/goods-empty.png"/>
     <view v-if="state.pagination.total > 0">
       <view
         class="order-list-card-box bg-white ss-r-10 ss-m-t-14 ss-m-20"
         v-for="record in state.pagination.list"
-        :key="record.id"
-      >
+        :key="record.id">
         <view class="order-card-header ss-flex ss-col-center ss-row-between ss-p-x-20">
           <view class="order-no">拼团编号：{{ record.id }}</view>
-          <view class="ss-font-26" :class="formatOrderColor(record)">
-            {{ tabMaps.find((item) => item.value === record.status).name }}
+          <view class="ss-font-26" style="color:var(--ui-BG-Main)" >
+            {{ tabMaps.find((item) => item.value === record.status)?.name || '未知' }}
           </view>
         </view>
         <view class="border-bottom">
           <s-goods-item
             :img="record.picUrl"
             :title="record.spuName"
-            :price="record.combinationPrice"
-          >
+            :price="record.combinationPrice">
             <template #groupon>
               <view class="ss-flex">
                 <view class="sales-title"> {{ record.userSize }} 人团 </view>
@@ -37,16 +36,13 @@
         </view>
         <view class="order-card-footer ss-flex ss-row-right ss-p-x-20">
           <button
-            class="detail-btn ss-reset-button"
-            @tap="sheep.$router.go('/pages/order/detail', { id: record.orderId })"
-          >
+            class="detail-btn ss-reset-button ui-BG-Main-Gradient"
+            @tap="sheep.$router.go('/pages/order/detail', { id: record.orderId })">
             订单详情
           </button>
           <button
-            class="tool-btn ss-reset-button"
-            :class="{ 'ui-BG-Main-Gradient': record.status === 0 }"
-            @tap="sheep.$router.go('/pages/activity/groupon/detail', { id: record.id })"
-          >
+            class="tool-btn ss-reset-button ui-BG-Main-Gradient"
+            @tap="sheep.$router.go('/pages/activity/groupon/detail', { id: record.id })">
             {{ record.status === 0 ? '邀请拼团' : '拼团详情' }}
           </button>
         </view>
@@ -68,7 +64,6 @@
   import { onLoad, onReachBottom, onPullDownRefresh } from '@dcloudio/uni-app';
   import sheep from '@/sheep';
   import _ from 'lodash-es';
-  import { formatOrderColor } from '@/sheep/hooks/useGoods';
   import { resetPagination } from '@/sheep/util';
   import CombinationApi from '@/sheep/api/promotion/combination';
 
@@ -86,26 +81,16 @@
   });
 
   const tabMaps = [
-    {
-      name: '全部',
-    },
-    {
-      name: '进行中',
-      value: 0,
-    },
-    {
-      name: '拼团成功',
-      value: 1,
-    },
-    {
-      name: '拼团失败',
-      value: 2,
-    },
+    { name: '全部', value: null },
+    { name: '进行中', value: 0 },
+    { name: '拼团成功', value: 1 },
+    { name: '拼团失败', value: 2 },
   ];
 
   // 切换选项卡
   function onTabsChange(e) {
-    resetPagination(state.pagination);
+    resetPagination(state.pagination); // 重置分页
+    state.pagination.list = [];        // 清空列表数据
     state.currentTab = e.index;
     getGrouponList();
   }
@@ -113,18 +98,46 @@
   // 获取订单列表
   async function getGrouponList() {
     state.loadStatus = 'loading';
-    const { code, data } = await CombinationApi.getCombinationRecordPage({
-      pageNo: state.pagination.pageNo,
-      pageSize: state.pagination.pageSize,
-      status: tabMaps[state.currentTab].value,
-    });
-    if (code !== 0) {
-      return;
+    try {
+      const { code, data } = await CombinationApi.getCombinationRecordPage({
+        pageNo: state.pagination.pageNo,
+        pageSize: state.pagination.pageSize,
+        status: tabMaps[state.currentTab]?.value,
+      });
+      if (code !== 0) return;
+  
+      state.pagination.list = _.concat(state.pagination.list, data.list);
+      state.pagination.total = data.total;
+      state.loadStatus = state.pagination.list.length < state.pagination.total ? 'more' : 'noMore';
+    } catch (error) {
+      console.error('获取拼团记录失败:', error);
+      state.loadStatus = 'error'; // 标记为错误状态
     }
-    state.pagination.list = _.concat(state.pagination.list, data.list);
-    state.pagination.total = data.total;
-    state.loadStatus = state.pagination.list.length < state.pagination.total ? 'more' : 'noMore';
   }
+
+  // 加载更多
+  let isLoading = false; // 加载锁
+  function loadMore() {
+    if (state.loadStatus !== 'noMore' && !isLoading) {
+      isLoading = true;
+      state.pagination.pageNo += 1;
+      getGrouponList().finally(() => {
+        isLoading = false;
+      });
+    }
+  }
+
+  // 上拉加载更多
+  onReachBottom(loadMore);
+
+  // 下拉刷新
+  onPullDownRefresh(() => {
+    resetPagination(state.pagination); // 重置分页
+    state.pagination.list = [];        // 清空列表数据
+    getGrouponList().finally(() => {
+      setTimeout(() => uni.stopPullDownRefresh(), 800);
+    });
+  });
 
   onLoad((options) => {
     if (options.type) {
@@ -132,29 +145,8 @@
     }
     getGrouponList();
   });
-
-  // 加载更多
-  function loadMore() {
-    if (state.loadStatus === 'noMore') {
-      return;
-    }
-    state.pagination.pageNo++;
-    getGrouponList();
-  }
-
-  // 上拉加载更多
-  onReachBottom(() => {
-    loadMore();
-  });
-
-  //下拉刷新
-  onPullDownRefresh(() => {
-    getGrouponList();
-    setTimeout(function () {
-      uni.stopPullDownRefresh();
-    }, 800);
-  });
 </script>
+
 
 <style lang="scss" scoped>
   .swiper-box {
@@ -189,6 +181,7 @@
         color: #999999;
         margin-right: 20rpx;
       }
+
       .tool-btn {
         width: 210rpx;
         height: 66rpx;
@@ -202,7 +195,7 @@
       .invite-btn {
         width: 210rpx;
         height: 66rpx;
-        background: linear-gradient(90deg, #fe832a, #ff6600);
+        background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
         box-shadow: 0px 8rpx 6rpx 0px rgba(255, 104, 4, 0.22);
         border-radius: 33rpx;
         color: #fff;
@@ -219,7 +212,7 @@
     font-size: 24rpx;
     font-weight: 400;
     padding: 6rpx 20rpx;
-    color: #f7979c;
+    color: var(--ui-BG-Main-gradient);
   }
 
   .num-title {
@@ -227,13 +220,17 @@
     font-weight: 400;
     color: #999999;
   }
+
   .warning-color {
     color: #faad14;
   }
+
   .danger-color {
     color: #ff3000;
   }
+
   .success-color {
     color: #52c41a;
   }
 </style>
+

@@ -62,7 +62,7 @@
       open-type="getPhoneNumber"
       @getphonenumber="getPhoneNumber"
     >
-      使用微信手机号
+      手机号快捷登录
     </button>
   </view>
 </template>
@@ -109,7 +109,7 @@
     closeAuthModal();
   }
 
-  // 使用微信手机号
+  // 手机号快捷登录
   async function getPhoneNumber(e) {
     if (e.detail.errMsg !== 'getPhoneNumber:ok') {
       return;

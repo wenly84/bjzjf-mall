@@ -37,7 +37,7 @@
                 v-for="value in property.values"
                 :class="[
                   {
-                    'ui-BG-Main-Gradient': state.currentPropertyArray[property.id] === value.id,
+                    'checked-btn': state.currentPropertyArray[property.id] === value.id,
                   },
                   {
                     'disabled-btn': value.disabled === true,
@@ -366,21 +366,21 @@
       .score-text {
         font-size: 30rpx;
         font-weight: 500;
-        color: $red;
+        color: var(--ui-BG-Main);
         font-family: OPPOSANS;
       }
 
       .price-text {
         font-size: 30rpx;
         font-weight: 500;
-        color: $red;
+        color: var(--ui-BG-Main);
         font-family: OPPOSANS;
 
         &::before {
           content: '￥';
           font-size: 30rpx;
           font-weight: 500;
-          color: $red;
+          color: var(--ui-BG-Main);
         }
       }
 
@@ -415,6 +415,12 @@
           font-size: 26rpx;
           margin-right: 10rpx;
           margin-bottom: 10rpx;
+        }
+
+        .checked-btn {
+          background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
+          font-weight: 500;
+          color: #ffffff;
         }
 
         .disabled-btn {

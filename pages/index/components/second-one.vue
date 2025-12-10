@@ -62,6 +62,7 @@
     .goods-img {
       width: calc((100vw - 140px) / 3);
       height: calc((100vw - 140px) / 3);
+	  border-radius: 8px;
     }
 
     .goods-title {
@@ -73,7 +74,7 @@
     }
 
     .goods-price {
-      color: $red;
+      color: var(--ui-BG-Main);
       line-height: 40rpx;
     }
   }

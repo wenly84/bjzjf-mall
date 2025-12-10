@@ -37,7 +37,7 @@
             >
               <image
                 class="icon"
-                :src="sheep.$url.static('/static/img/shop/chat/image.png')"
+                :src="sheep.$url.static('/static/image/mall/chat/image.png')"
                 mode="aspectFill"
               ></image>
             </s-uploader>
@@ -46,7 +46,7 @@
           <view class="goods" @tap="onShowSelect('goods')">
             <image
               class="icon"
-              :src="sheep.$url.static('/static/img/shop/chat/goods.png')"
+              :src="sheep.$url.static('/static/image/mall/chat/goods.png')"
               mode="aspectFill"
             ></image>
             <view>商品</view>
@@ -54,7 +54,7 @@
           <view class="order" @tap="onShowSelect('order')">
             <image
               class="icon"
-              :src="sheep.$url.static('/static/img/shop/chat/order.png')"
+              :src="sheep.$url.static('/static/image/mall/chat/order.png')"
               mode="aspectFill"
             ></image>
             <view>订单</view>

@@ -39,7 +39,7 @@
           class="chat-avatar ss-m-r-24"
           :src="
             sheep.$url.cdn(message.senderAvatar) ||
-            sheep.$url.static('/static/img/shop/chat/default.png')
+            sheep.$url.static('/static/image/mall/chat/default.png')
           "
           mode="aspectFill"
         ></image>
@@ -72,7 +72,7 @@
             :goodsData="getMessageContent(message)"
             @tap="
               sheep.$router.go('/pages/goods/index', {
-                id: getMessageContent(message).id,
+                id: getMessageContent(message).spuId,
               })
             "
           />
@@ -93,7 +93,7 @@
           class="chat-avatar ss-m-l-24"
           :src="
             sheep.$url.cdn(message.senderAvatar) ||
-            sheep.$url.static('/static/img/shop/chat/default.png')
+            sheep.$url.cdn(userInfo.avatar)
           "
           mode="aspectFill"
         >
@@ -112,7 +112,7 @@
   import { formatDate } from '@/sheep/util';
   import GoodsItem from '@/pages/chat/components/goods.vue';
   import OrderItem from '@/pages/chat/components/order.vue';
-
+	const userInfo = computed(() => sheep.$store('user').userInfo);
   const props = defineProps({
     // 消息
     message: {
@@ -247,7 +247,6 @@
     border-radius: 10rpx;
     color: #fff;
     background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
-
     &.admin {
       background: #fff;
       color: #333;

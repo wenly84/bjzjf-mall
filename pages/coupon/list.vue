@@ -11,7 +11,7 @@
     </su-sticky>
     <s-empty
       v-if="state.pagination.total === 0"
-      icon="/static/coupon-empty.png"
+      icon="/static/images/coupon-empty.png"
       text="暂无优惠券"
     />
     <!-- 情况一：领劵中心 -->
@@ -200,12 +200,11 @@
 </script>
 <style lang="scss" scoped>
   .card-btn {
-    // width: 144rpx;
     padding: 0 16rpx;
     height: 50rpx;
     border-radius: 40rpx;
     background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
-    color: #ffffff;
+    color: #fff;
     font-size: 24rpx;
     font-weight: 400;
   }

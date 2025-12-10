@@ -24,7 +24,7 @@
       <s-empty
         v-if="state.commentList.length === 0"
         paddingTop="0"
-        icon="/static/comment-empty.png"
+        icon="/static/images/comment-empty.png"
         text="期待您的第一个评价"
       />
     </view>
@@ -68,6 +68,7 @@
       .line {
         width: 6rpx;
         height: 30rpx;
+        //background: linear-gradient(115deg, #f44739 0%, #ff6600 100%);
         background: linear-gradient(180deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
         border-radius: 3rpx;
       }

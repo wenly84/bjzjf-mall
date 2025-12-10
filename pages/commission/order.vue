@@ -56,7 +56,11 @@
         </view>
       </view>
       <!-- 数据为空 -->
-      <s-empty v-if="state.pagination.total === 0" icon="/static/order-empty.png" text="暂无订单" />
+      <s-empty
+        v-if="state.pagination.total === 0"
+        icon="/static/images/order-empty.png"
+        text="暂无订单"
+      />
       <!-- 加载更多 -->
       <uni-load-more
         v-if="state.pagination.total > 0"
@@ -81,7 +85,7 @@
   import { fen2yuan } from '../../sheep/hooks/useGoods';
 
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/user/withdraw_bg.png');
 
   onPageScroll((e) => {
     state.scrollTop = e.scrollTop <= 100;
@@ -97,7 +101,7 @@
       list: [],
       total: 0,
       pageNo: 1,
-      pageSize: 1,
+      pageSize: 8,
     },
   });
 
@@ -128,9 +132,9 @@
     state.loadStatus = 'loading';
     let { code, data } = await BrokerageApi.getBrokerageRecordPage({
       pageSize: state.pagination.pageSize,
-      pageNo: state.pagination.pageSize,
+      pageNo: state.pagination.pageNo,
       bizType: 1, // 获得推广佣金
-      status: state.currentTab > 0 ? state.currentTab : undefined,
+      status: state.currentTab > 0 ? state.currentTab - 1 : undefined,
     });
     if (code !== 0) {
       return;
@@ -168,7 +172,7 @@
     padding: 0 20rpx 20rpx 20rpx;
     width: 750rpx;
     background: v-bind(headerBg) no-repeat,
-      linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
+    linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
 
     // 团队信息总览
@@ -306,7 +310,7 @@
       .commission-num {
         font-size: 30rpx;
         font-weight: 500;
-        color: $red;
+        color: var(--ui-BG-Main);
         font-family: OPPOSANS;
 
         &::before {

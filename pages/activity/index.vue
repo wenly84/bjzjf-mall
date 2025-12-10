@@ -10,8 +10,8 @@
             {{ formatRewardActivityRule(state.activityInfo, item) }}
           </view>
         </view>
-        <image class="activity-left-image" src="/static/activity-left.png" />
-        <image class="activity-right-image" src="/static/activity-right.png" />
+        <image class="activity-left-image" :src="sheep.$url.static('/static/image/mall/activity-left.png')" />
+        <image class="activity-right-image" :src="sheep.$url.static('/static/image/mall/activity-right.png')"/>
       </view>
     </su-sticky>
 
@@ -193,13 +193,13 @@
     .type-text {
       font-size: 26rpx;
       font-weight: 500;
-      color: #ff6000;
+      color: var(--ui-BG-Main);
       line-height: 42rpx;
     }
     .tip-content {
       font-size: 26rpx;
       font-weight: 500;
-      color: #ff6000;
+      color: var(--ui-BG-Main);
       line-height: 42rpx;
     }
   }

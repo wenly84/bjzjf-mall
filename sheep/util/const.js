@@ -97,6 +97,35 @@ export const WxaSubscribeTemplate = {
   PAY_WALLET_RECHARGER_SUCCESS: '充值成功通知',
 };
 
+export const PromotionActivityTypeEnum = {
+  NORMAL: {
+    type: 0,
+    name: '普通',
+  },
+  SECKILL: {
+    type: 1,
+    name: '秒杀',
+  },
+  BARGAIN: {
+    type: 2,
+    name: '砍价',
+  },
+  COMBINATION: {
+    type: 3,
+    name: '拼团',
+  },
+  POINT: {
+    type: 4,
+    name: '积分商城',
+  },
+};
+
+/** 配送方式枚举 */
+export const DeliveryTypeEnum = {
+  EXPRESS: { type: 1, name: '快递发货' },
+  PICK_UP: { type: 2, name: '用户自提' },
+};
+
 export const getTimeStatusEnum = (startTime, endTime) => {
   const now = dayjs();
   if (now.isBefore(startTime)) {

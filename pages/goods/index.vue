@@ -10,7 +10,7 @@
       <s-empty
         v-else-if="state.goodsInfo === null"
         text="商品不存在或已下架"
-        icon="/static/soldout-empty.png"
+        icon="/static/images/soldout-empty.png"
         showAction
         actionText="再逛逛"
         actionUrl="/pages/goods/list"
@@ -51,8 +51,7 @@
                     class="tag ss-m-r-10"
                     v-for="promos in state.activityInfo"
                     :key="promos.id"
-                    @tap="onActivity"
-                  >
+                    @tap="onActivity">
                     {{ promos.name }}
                   </view>
                 </view>
@@ -62,8 +61,7 @@
               <view
                 class="get-coupon-box ss-flex ss-col-center ss-m-l-20"
                 @tap="state.showModel = true"
-                v-if="state.couponInfo.length"
-              >
+                v-if="state.couponInfo.length">
                 <view class="discounts-title ss-m-r-8">领券</view>
                 <text class="cicon-forward"></text>
               </view>
@@ -77,8 +75,7 @@
             <detail-cell-sku
               v-model="state.selectedSku.goods_sku_text"
               :sku="state.selectedSku"
-              @tap="state.showSelectSku = true"
-            />
+              @tap="state.showSelectSku = true"/>
           </view>
 
           <!-- 规格与数量弹框 -->
@@ -88,8 +85,7 @@
             @addCart="onAddCart"
             @buy="onBuy"
             @change="onSkuChange"
-            @close="state.showSelectSku = false"
-          />
+            @close="state.showSelectSku = false"/>
         </view>
 
         <!-- 评价 -->
@@ -235,6 +231,21 @@
   //  TODO 智匠坊科技：待测试
   const shareInfo = computed(() => {
     if (isEmpty(state.goodsInfo)) return {};
+	// return {
+	// 	"title": "氨基酸植萃洁面乳",
+	// 	"desc": "氨基酸植萃洁面乳，源自天然植物精华的护肤产品，专为追求细致护理与卓越效果的您设计。它融合了现代科技与传统草本智慧，为肌肤带来深层滋养与修护，帮助恢复肌肤的自然光泽与弹性。",
+	// 	"image": "https://attach.hansi.site/mall/d6a33bb395eb3f9d4757b41a9c22cfe18f96f33c31305ae7fefcd4d6ddc67966.jpg",
+	// 	"path": "pages/index/index?spm=0.2.637.3.1",
+	// 	"link": "?spm=0.2.637.3.1",
+	// 	"query": "spm=0.2.637.3.1",
+	// 	// "poster": {
+	// 	// 	"type": "goods",
+	// 	// 	"title": "氨基酸植萃洁面乳",
+	// 	// 	"image": "https://attach.hansi.site/mall/d6a33bb395eb3f9d4757b41a9c22cfe18f96f33c31305ae7fefcd4d6ddc67966.jpg",
+	// 	// 	"price": "120.00",
+	// 	// 	"original_price": "290.00"
+	// 	// }
+	// }
     return sheep.$platform.share.getShareInfo(
       {
         title: state.goodsInfo.name,
@@ -307,7 +318,7 @@
           // 情况二：满减送
           state.activityInfo.push(activity);
         } else {
-          // 情况三：限时折扣 TODO 智匠坊科技
+          // 情况三：限时折扣
           console.log('待实现！优先级不高');
         }
       });
@@ -329,7 +340,7 @@
       .price-text {
         font-size: 42rpx;
         font-weight: 500;
-        color: #ff3000;
+		color: var(--ui-BG-Main);
         line-height: 30rpx;
         font-family: OPPOSANS;
 
@@ -426,7 +437,6 @@
       height: 72rpx;
       font-weight: 500;
       font-size: 28rpx;
-
       border-radius: 0 40rpx 40rpx 0;
       background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
       color: $white;

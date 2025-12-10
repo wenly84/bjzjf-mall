@@ -22,30 +22,43 @@ const sheep = {
   $zIndex: zIndex,
 };
 
-// 加载ZjfShop底层依赖
+// 加载 ZjfShop 底层依赖
 export async function ZjfShopInit() {
-  // 应用初始化
-  await $store('app').init();
+  try {
+    // 应用初始化
+    await $store('app').init();
 
-  // 平台初始化加载(各平台provider提供不同的加载流程)
-  $platform.load();
+    // 平台初始化加载
+    try {
+      $platform.load();
+    } catch (error) {
+      console.error('Platform Load Error:', error);
+    }
 
-  if (process.env.NODE_ENV === 'development') {
-    ZjfShopDebug();
+    // 开发模式
+    if (process.env.NODE_ENV === 'development') {
+      ZjfShopDebug();
+    }
+  } catch (error) {
+    console.error('ZjfShopInit Error:', error);
   }
 }
 
 // 开发模式
 function ZjfShopDebug() {
-  // 开发环境引入vconsole调试
+  // 开发环境引入 vconsole 调试
   // #ifdef H5
-  // import("vconsole").then(vconsole => {
-  // 	new vconsole.default();
-  // });
+  import('vconsole').then((vconsole) => {
+    new vconsole.default();
+  });
   // #endif
-  // TODO 智匠坊科技：可以打印路由
-  // 同步前端页面到后端
-  // console.log(ROUTES)
+
+  // 打印路由信息（确保 ROUTES 定义）
+  if (typeof ROUTES !== 'undefined') {
+    //console.log('路由列表:', ROUTES);
+  } else {
+    console.warn('ROUTES is not defined');
+  }
 }
 
 export default sheep;

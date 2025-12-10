@@ -4,7 +4,7 @@
     :img="goodsData.picUrl"
     :price="goodsData.price"
     :skuText="goodsData.introduction"
-    priceColor="#FF3000"
+    priceColor="var(--ui-BG-Main)"
     :titleWidth="400"
   />
 </template>

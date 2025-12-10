@@ -44,7 +44,7 @@
     },
     errorSrc: {
       type: String,
-      default: '/static/img/shop/empty_network.png',
+      default: '/static/image/mall/empty_network.png',
     },
     mode: {
       type: String,

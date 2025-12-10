@@ -1,13 +1,13 @@
 {
   "id": "bjzjf_mall",
   "name": "bjzjf_mall",
-  "displayName": "智匠坊商城",
+  "displayName": "手心云商",
   "version": "1.0.0",
-  "description": "智匠坊商城",
+  "description": "手心云商",
   "scripts": {
     "prettier": "prettier --write  \"{pages,sheep}/**/*.{js,json,tsx,css,less,scss,vue,html,md}\""
   },
-  "repository": "https://github.com/wenly84/bjzjf-mall.git",
+  "repository": "https://gitee.com/hansi-cms/bjzjf-mall.git",
   "keywords": [
     "商城",
     "B2C",
@@ -16,7 +16,7 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wenly84/bjzjf-mall/issues"
+    "url": "https://gitee.com/hansi-cms/bjzjf-mall/issues"
   },
   "homepage": "https://github.com/dcloudio/hello-uniapp#readme",
   "dcloudext": {
@@ -94,7 +94,7 @@
     "luch-request": "^3.0.8",
     "pinia": "^2.0.33",
     "pinia-plugin-persist-uni": "^1.2.0",
-    "weixin-js-sdk": "^1.6.0"
+    "weixin-js-sdk": "^1.6.5"
   },
   "devDependencies": {
     "prettier": "^2.8.7",

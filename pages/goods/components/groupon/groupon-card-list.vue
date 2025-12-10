@@ -117,7 +117,7 @@
       color: #666666;
 
       .num {
-        color: #ff6000;
+        color: var(--ui-BG-Main);
       }
     }
 
@@ -130,7 +130,7 @@
     .go-btn {
       width: 140rpx;
       height: 60rpx;
-      background: linear-gradient(90deg, #ff6000 0%, #fe832a 100%);
+      background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
       border-radius: 30rpx;
       color: #fff;
       font-weight: 500;

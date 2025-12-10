@@ -268,7 +268,7 @@
   }
 
   .goods-box {
-    background: #fff;
+    background: $white;
     padding: 20rpx;
     margin-bottom: 20rpx;
   }
@@ -280,24 +280,24 @@
 
   .foot_box {
     height: 100rpx;
-    background-color: #fff;
+    background-color: $white;
 
     .sub-btn {
       width: 336rpx;
       line-height: 74rpx;
       border-radius: 38rpx;
-      color: rgba(#fff, 0.9);
+      color: rgba($white, 0.9);
       font-size: 28rpx;
     }
 
     .contcat-btn {
       width: 336rpx;
       line-height: 74rpx;
-      background: rgba(238, 238, 238, 1);
+      background: var(--ui-BG-Main-light);
       border-radius: 38rpx;
       font-size: 28rpx;
       font-weight: 400;
-      color: rgba(51, 51, 51, 1);
+      color: var(--ui-BG-Main);
     }
   }
 

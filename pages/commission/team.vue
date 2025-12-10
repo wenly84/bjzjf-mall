@@ -1,19 +1,17 @@
 <!-- 页面 TODO 智匠坊科技：该页面的实现代码需要优化，包括 js 和 css，以及相关的样式设计 -->
 <template>
-  <s-layout title="我的团队" :class="state.scrollTop ? 'team-wrap' : ''" navbar="inner">
+  <s-layout title="我的团队"   :class="state.scrollTop ? 'team-wrap' : ''" >
     <view class="promoter-list">
       <view
-        class="promoterHeader bg-color"
-        style="backgroundcolor: #e93323 !important; height: 218rpx; color: #fff"
-      >
+        class="header-box"
+        style="height: 218rpx; color: #fff">
         <view class="headerCon acea-row row-between" style="padding: 28px 29px 0 29px">
           <view>
             <view class="name" style="color: #fff">推广人数</view>
             <view>
               <text class="num" style="color: #fff">
                 {{
-                  state.summary.firstBrokerageUserCount + state.summary.secondBrokerageUserCount ||
-                  0
+                  state.summary.firstBrokerageUserCount + state.summary.secondBrokerageUserCount || 0
                 }}
               </text>
               人
@@ -22,8 +20,8 @@
           <view class="iconfont icon-tuandui" />
         </view>
       </view>
-      <view style="padding: 0 30rpx">
-        <view class="nav acea-row row-around l1">
+      <view style="padding: 0 8rpx">
+        <view class="acea-row row-around l1">
           <view :class="state.level == 1 ? 'item on' : 'item'" @click="setType(1)">
             一级({{ state.summary.firstBrokerageUserCount || 0 }})
           </view>
@@ -33,8 +31,7 @@
         </view>
         <view
           class="search acea-row row-between-wrapper"
-          style="display: flex; height: 100rpx; align-items: center"
-        >
+          style="display: flex; height: 100rpx; align-items: center">
           <view class="input">
             <input
               placeholder="点击搜索会员名称"
@@ -56,8 +53,7 @@
             <view
               class="sortItem"
               @click="setSort('userCount', 'asc')"
-              v-if="sort === 'userCountDESC'"
-            >
+              v-if="sort === 'userCountDESC'">
               团队排序
               <!-- TODO 智匠坊科技：看看怎么从项目里拿出去 -->
               <image src="/static/images/sort1.png" />
@@ -65,8 +61,7 @@
             <view
               class="sortItem"
               @click="setSort('userCount', 'desc')"
-              v-else-if="sort === 'userCountASC'"
-            >
+              v-else-if="sort === 'userCountASC'">
               团队排序
               <image src="/static/images/sort3.png" />
             </view>
@@ -93,8 +88,7 @@
             <view
               class="sortItem"
               @click="setSort('orderCount', 'asc')"
-              v-if="sort === 'orderCountDESC'"
-            >
+              v-if="sort === 'orderCountDESC'">
               订单排序
               <image src="/static/images/sort1.png" />
             </view>
@@ -115,8 +109,7 @@
             <view class="item acea-row row-between-wrapper" style="display: flex">
               <view
                 class="picTxt acea-row row-between-wrapper"
-                style="display: flex; align-items: center"
-              >
+                style="display: flex; align-items: center">
                 <view class="pictrue">
                   <image :src="item.avatar" />
                 </view>
@@ -134,9 +127,7 @@
                   justify-content: center;
                   flex-direction: column;
                   display: flex;
-                  margin-left: auto;
-                "
-              >
+                  margin-left: auto;">
                 <view>
                   <text class="num font-color">{{ item.brokerageUserCount || 0 }} </text>人
                 </view>
@@ -157,77 +148,6 @@
         </view>
       </view>
     </view>
-    <!-- <home></home> -->
-
-    <!-- 		<view class="header-box" :style="[
-        {
-          marginTop: '-' + Number(statusBarHeight + 88) + 'rpx',
-          paddingTop: Number(statusBarHeight + 108) + 'rpx',
-        },
-      ]">
-			<view v-if="userInfo.parent_user" class="referrer-box ss-flex ss-col-center">
-				推荐人：
-				<image class="referrer-avatar ss-m-r-10" :src="sheep.$url.cdn(userInfo.parent_user.avatar)"
-					mode="aspectFill">
-				</image>
-				{{ userInfo.parent_user.nickname }}
-			</view>
-			<view class="team-data-box ss-flex ss-col-center ss-row-between">
-				<view class="data-card">
-					<view class="total-item">
-						<view class="item-title">团队总人数（人）</view>
-						<view class="total-num">
-							{{ (state.summary.firstBrokerageUserCount+ state.summary.secondBrokerageUserCount)|| 0 }}
-						</view>
-					</view>
-					<view class="category-item ss-flex">
-						<view class="ss-flex-1">
-							<view class="item-title">一级成员</view>
-							<view class="category-num">{{ state.summary.firstBrokerageUserCount || 0 }}</view>
-						</view>
-						<view class="ss-flex-1">
-							<view class="item-title">二级成员</view>
-							<view class="category-num">{{ state.summary.secondBrokerageUserCount || 0 }}</view>
-						</view>
-					</view>
-				</view>
-				<view class="data-card">
-					<view class="total-item">
-						<view class="item-title">团队分销商人数（人）</view>
-						<view class="total-num">{{ agentInfo?.child_agent_count_all || 0 }}</view>
-					</view>
-					<view class="category-item ss-flex">
-						<view class="ss-flex-1">
-							<view class="item-title">一级分销商</view>
-							<view class="category-num">{{ agentInfo?.child_agent_count_1 || 0 }}</view>
-						</view>
-						<view class="ss-flex-1">
-							<view class="item-title">二级分销商</view>
-							<view class="category-num">{{ agentInfo?.child_agent_count_2 || 0 }}</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<view class="list-box">
-			<uni-list :border="false">
-				<uni-list-chat v-for="item in state.pagination.data" :key="item.id" :avatar-circle="true"
-					:title="item.nickname" :avatar="sheep.$url.cdn(item.avatar)"
-					:note="filterUserNum(item.agent?.child_user_count_1)">
-					<view class="chat-custom-right">
-						<view v-if="item.avatar" class="tag-box ss-flex ss-col-center">
-							<image class="tag-img" :src="sheep.$url.cdn(item.avatar)" mode="aspectFill">
-							</image>
-							<text class="tag-title">{{ item.nickname }}</text>
-						</view>
-						<text
-							class="time-text">{{ sheep.$helper.timeFormat(item.brokerageTime, 'yyyy-mm-dd hh:MM:ss') }}</text>
-					</view>
-				</uni-list-chat>
-			</uni-list>
-		</view>
-		<s-empty v-if="state.pagination.total === 0" icon="/static/data-empty.png" text="暂无团队信息">
-		</s-empty> -->
   </s-layout>
 </template>
 
@@ -242,7 +162,7 @@
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
   // const agentInfo = computed(() => sheep.$store('user').agentInfo);
   const userInfo = computed(() => sheep.$store('user').userInfo);
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/user/withdraw_bg.png');
 
   onPageScroll((e) => {
     state.scrollTop = e.scrollTop <= 100;
@@ -352,7 +272,7 @@
     z-index: 3;
     position: relative;
     background: v-bind(headerBg) no-repeat,
-      linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
+    linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
 
     // 团队信息总览
@@ -439,25 +359,6 @@
       height: 34rpx;
       border-radius: 50%;
     }
-  }
-
-  .promoter-list .nav {
-    background-color: #fff;
-    height: 86rpx;
-    line-height: 86rpx;
-    font-size: 28rpx;
-    color: #282828;
-    border-bottom: 1rpx solid #eee;
-    border-top-left-radius: 14rpx;
-    border-top-right-radius: 14rpx;
-    margin-top: -30rpx;
-  }
-
-  .promoter-list .nav .item.on {
-    border-bottom: 5rpx solid;
-    // $theme-color
-    color: red;
-    // $theme-color
   }
 
   .promoter-list .search {

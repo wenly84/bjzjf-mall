@@ -3,8 +3,7 @@
     <s-empty
       v-if="state.list.length === 0"
       text="购物车空空如也,快去逛逛吧~"
-      icon="/static/cart-empty.png"
-    />
+      icon="/static/images/cart-empty.png"/>
 
     <!-- 头部 -->
     <view class="cart-box ss-flex ss-flex-col ss-row-between" v-if="state.list.length">
@@ -32,8 +31,7 @@
                 :checked="state.selectedIds.includes(item.id)"
                 color="var(--ui-BG-Main)"
                 style="transform: scale(0.8)"
-                @tap.stop="onSelectSingle(item.id)"
-              />
+                @tap.stop="onSelectSingle(item.id)" />
             </label>
             <s-goods-item
               :title="item.spu.name"
@@ -44,11 +42,9 @@
                   ? item.sku.properties.reduce(
                       (items2, items) => items2.valueName + ' ' + items.valueName,
                     )
-                  : item.sku.properties[0].valueName
-              "
-              priceColor="#FF3000"
-              :titleWidth="400"
-            >
+                  : item.sku.properties[0].valueName"
+               priceColor="var(--ui-BG-Main)"
+              :titleWidth="400">
               <template v-if="!state.editMode" v-slot:tool>
                 <su-number-box
                   :min="0"
@@ -71,8 +67,7 @@
                 :checked="state.isAllSelected"
                 color="var(--ui-BG-Main)"
                 style="transform: scale(0.8)"
-                @tap.stop="onSelectAll"
-              />
+                @tap.stop="onSelectAll"/>
               <view class="ss-m-l-8"> 全选 </view>
             </label>
             <text>合计：</text>
@@ -216,11 +211,16 @@
     }
 
     .cart-content {
+      width: 100%;
       margin-top: 70rpx;
-
+      padding: 0 15rpx;
+      box-sizing: border-box;
       .goods-box {
         background-color: #fff;
+        &:last-child {
+          margin-bottom: 40rpx;
+        }
       }
     }
-  }
+ }
 </style>

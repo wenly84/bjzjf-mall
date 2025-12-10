@@ -156,7 +156,7 @@
   import TradeConfigApi from '@/sheep/api/trade/config';
   import BrokerageApi from '@/sheep/api/trade/brokerage';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/user/withdraw_bg.png');
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
 
   const userStore = sheep.$store('user');
@@ -189,7 +189,6 @@
   // 提交提现
   const onConfirm = async () => {
     // 参数校验
-    debugger;
     if (
       !state.accountInfo.price ||
       state.accountInfo.price > state.brokerageInfo.price ||

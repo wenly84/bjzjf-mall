@@ -13,7 +13,7 @@
         state.activity.endTime < new Date().getTime()
       "
       text="活动不存在或已结束"
-      icon="/static/soldout-empty.png"
+      icon="/static/images/soldout-empty.png"
       showAction
       actionText="返回上一页"
       @clickAction="sheep.$router.back()"
@@ -43,7 +43,7 @@
                   <view class="tig-icon ss-flex ss-col-center ss-row-center">
                     <view class="groupon-tag">
                       <image
-                        :src="sheep.$url.static('/static/img/shop/goods/groupon-tag.png')"
+                        :src="sheep.$url.static('/static/image/mall/goods/groupon-tag.png')"
                       ></image>
                     </view>
                   </view>
@@ -156,10 +156,10 @@
   import CombinationApi from '@/sheep/api/promotion/combination';
   import SpuApi from '@/sheep/api/product/spu';
 
-  const headerBg = sheep.$url.css('/static/img/shop/goods/groupon-bg.png');
-  const btnBg = sheep.$url.css('/static/img/shop/goods/groupon-btn.png');
-  const disabledBtnBg = sheep.$url.css('/static/img/shop/goods/activity-btn-disabled.png');
-  const grouponBg = sheep.$url.css('/static/img/shop/goods/groupon-tip-bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/goods/groupon-bg.png');
+  const btnBg = sheep.$url.css('/static/image/mall/goods/groupon-btn.png');
+  const disabledBtnBg = sheep.$url.css('/static/image/mall/goods/activity-btn-disabled.png');
+  const grouponBg = sheep.$url.css('/static/image/mall/goods/groupon-tip-bg.png');
 
   onPageScroll(() => {});
   const state = reactive({
@@ -305,14 +305,14 @@
     // height: 320rpx;
     background-size: 100% 100%;
     border-radius: 10rpx;
-    background-image: v-bind(headerBg);
+    background-image: v-bind(headerBg), linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-repeat: no-repeat;
 
     .price-box {
       .price-text {
         font-size: 30rpx;
         font-weight: 500;
-        color: #fff;
+        color: $white;
         line-height: normal;
         font-family: OPPOSANS;
 
@@ -325,7 +325,7 @@
     .origin-price {
       font-size: 24rpx;
       font-weight: 400;
-      color: #fff;
+      color: $gray-c; /* 灰色 */
       opacity: 0.7;
 
       .origin-price-text {
@@ -406,13 +406,13 @@
       font-size: 30rpx;
       font-weight: bold;
       line-height: 42rpx;
-      color: #fff;
+      color: $white;
     }
 
     .subtitle-text {
       font-size: 26rpx;
       font-weight: 400;
-      color: #ffffff;
+      color: $white;
       line-height: 42rpx;
       opacity: 0.9;
     }
@@ -453,8 +453,8 @@
     .origin-price-btn {
       width: 236rpx;
       height: 80rpx;
-      background: rgba(#ff5651, 0.1);
-      color: #ff6000;
+      background: var(--ui-BG-Main-light); /* 背景渐变 */
+      color: var(--ui-BG-Main); /* 主颜色 */
       border-radius: 40rpx 0px 0px 40rpx;
       line-height: normal;
       font-size: 24rpx;
@@ -482,7 +482,7 @@
       }
       .more-item-hover {
         background: rgba(#ffefe5, 0.32);
-        color: #ff6000;
+        color: var(--ui-BG-Main);
       }
     }
   }
@@ -517,7 +517,7 @@
       background: #ffffff;
       border-radius: 16rpx;
       font-weight: 500;
-      color: #ff6000;
+      color: var(--ui-BG-Main);
       font-size: 24rpx;
       line-height: normal;
     }

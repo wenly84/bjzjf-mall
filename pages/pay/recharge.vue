@@ -45,9 +45,8 @@
           </button>
         </view>
         <button
-          class="ss-reset-button save-btn ui-BG-Main-Gradient ss-m-t-60 ui-Shadow-Main"
-          @tap="onConfirm"
-        >
+          class="ss-reset-button save-btn ui-BG-Main-Gradient"
+          @tap="onConfirm">
           确认充值
         </button>
       </view>
@@ -65,7 +64,7 @@
 
   const userWallet = computed(() => sheep.$store('user').userWallet);
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/user/withdraw_bg.png');
 
   const state = reactive({
     recharge_money: '', // 输入的充值金额
@@ -197,7 +196,7 @@
 
     .face-value-btn {
       width: 200rpx;
-      height: 144rpx;
+      height: 100rpx;
       border: 1px solid var(--ui-BG-Main);
       border-radius: 10rpx;
       position: relative;

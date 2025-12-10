@@ -17,7 +17,7 @@
         <view class="pay-title ss-p-l-30 ss-m-y-30">选择支付方式</view>
         <radio-group @change="onTapPay">
           <label class="pay-type-item" v-for="item in state.payMethods" :key="item.title">
-            <view
+            <view v-if="!item.disabled"
               class="pay-item ss-flex ss-col-center ss-row-between ss-p-x-30 border-bottom"
               :class="{ 'disabled-pay-item': item.disabled }"
             >
@@ -25,7 +25,7 @@
                 <image
                   class="pay-icon"
                   v-if="item.disabled"
-                  :src="sheep.$url.static('/static/img/shop/pay/cod_disabled.png')"
+                  :src="sheep.$url.static('/static/image/mall/pay/cod_disabled.png')"
                   mode="aspectFit"
                 />
                 <image
@@ -212,7 +212,7 @@
       padding: 60rpx 20rpx 40rpx;
 
       .money-text {
-        color: $red;
+        color: var(--ui-BG-Main);
         font-size: 46rpx;
         font-weight: bold;
         font-family: OPPOSANS;

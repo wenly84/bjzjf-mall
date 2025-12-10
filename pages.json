@@ -120,6 +120,17 @@
 						"group": "商品"
 					}
 				},
+                {
+                    "path": "point",
+                    "style": {
+                      "navigationBarTitleText": "积分商品"
+                    },
+                    "meta": {
+                      "sync": true,
+                      "title": "积分商品",
+                      "group": "商品"
+                    }
+                },
 				{
 					"path": "list",
 					"style": {
@@ -258,6 +269,18 @@
 						"auth": true,
 						"sync": true,
 						"title": "用户信息",
+						"group": "用户中心"
+					}
+				},
+				{
+					"path": "level",
+					"style": {
+						"navigationBarTitleText": "会员等级"
+					},
+					"meta": {
+						"auth": true,
+						"sync": true,
+						"title": "会员等级",
 						"group": "用户中心"
 					}
 				},
@@ -641,13 +664,24 @@
 						"title": "秒杀活动",
 						"group": "营销活动"
 					}
-				}
+				},
+                {
+                  "path": "point/list",
+                  "style": {
+                    "navigationBarTitleText": "积分商城"
+                  },
+                  "meta": {
+                    "sync": true,
+                    "title": "积分商城",
+                    "group": "营销活动"
+                  }
+                }
 			]
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "智匠坊商城",
+		"navigationBarTitleText": "手心云商",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF",
 		"navigationStyle": "custom"

@@ -1,16 +1,12 @@
 <template>
   <view>
     <view
-      v-if="mode === 2 && state.liveList.length"
+      v-if="mode === 2 && state.liveList?.length"
       class="goods-md-wrap ss-flex ss-flex-wrap ss-col-top"
       :style="[{ margin: '-' + data.space + 'rpx' }]"
     >
       <view
-        :style="[
-          {
-            padding: data.space + 'rpx',
-          },
-        ]"
+        :style="[{ padding: data.space + 'rpx' }]"
         class="goods-list-box"
         v-for="item in state.liveList"
         :key="item.id"
@@ -29,7 +25,7 @@
         </s-live-card>
       </view>
     </view>
-    <view v-if="mode === 1 && state.liveList.length" class="goods-lg-box">
+    <view v-if="mode === 1 && state.liveList?.length" class="goods-lg-box">
       <view
         class="goods-box"
         :style="[{ marginBottom: data.space + 'px' }]"
@@ -42,7 +38,7 @@
           :goodsFields="goodsFields"
           :data="item"
           :titleColor="goodsFields.name?.color"
-          :subTitleColor="goodsFields.anchor_name.color"
+          :subTitleColor="goodsFields.anchor_name?.color"
           :topRadius="data.borderRadiusTop"
           :bottomRadius="data.borderRadiusBottom"
           @tap="goRoom(item.roomid)"
@@ -63,19 +59,29 @@
   const props = defineProps({
     data: {
       type: Object,
-      default() {},
+      default() {
+        return {};
+      },
     },
     styles: {
       type: Object,
-      default() {},
+      default() {
+        return {};
+      },
     },
   });
-  const { mode, goodsFields, mpliveIds } = props.data ?? {};
-  const { marginLeft, marginRight } = props.styles ?? {};
+  const { mode = 1, goodsFields = {}, mpliveIds = [] } = props.data || {};
+  const { marginLeft = 0, marginRight = 0 } = props.styles || {};
 
   async function getLiveListByIds(ids) {
-    const { data } = await sheep.$api.app.mplive.getRoomList(ids);
-    return data;
+    if (!ids?.length) return [];
+    try {
+      const { data } = await sheep.$api.app.mplive.getRoomList(ids);
+      return data || [];
+    } catch (error) {
+      console.error('获取直播间列表失败:', error);
+      return [];
+    }
   }
   function goRoom(id) {
     // #ifdef MP-WEIXIN
@@ -109,18 +115,26 @@
 
   async function getMpLink() {
     // #ifndef MP-WEIXIN
-    if (state.mpLink === '') {
-      const { error, data } = await sheep.$api.app.mplive.getMpLink();
-      if (error === 0) {
-        state.mpLink = data;
+    try {
+      if (state.mpLink === '') {
+        const { error, data } = await sheep.$api.app.mplive.getMpLink();
+        if (error === 0) {
+          state.mpLink = data;
+        }
       }
+      goMpLink();
+    } catch (error) {
+      console.error('获取小程序链接失败:', error);
     }
-    goMpLink();
     // #endif
   }
 
   onMounted(async () => {
-    state.liveList = await getLiveListByIds(mpliveIds);
+    try {
+      state.liveList = await getLiveListByIds(mpliveIds);
+    } catch (error) {
+      console.error('直播模块初始化失败:', error);
+    }
   });
 </script>
 <style lang="scss" scoped>

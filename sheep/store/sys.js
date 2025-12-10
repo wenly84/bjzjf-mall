@@ -18,6 +18,13 @@ const sys = defineStore({
         this.theme = theme;
       }
     },
+	setMode(mode = '') {
+	  if (mode === '') {
+	    this.mode =  'light';
+	  } else {
+	    this.mode = mode;
+	  }
+	},
   },
   persist: {
     enabled: true,

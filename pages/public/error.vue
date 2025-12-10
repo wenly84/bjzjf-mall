@@ -3,30 +3,30 @@
   <view class="error-page">
     <s-empty
       v-if="errCode === 'NetworkError'"
-      icon="/static/internet-empty.png"
+      icon="/static/images/internet-empty.png"
       text="网络连接失败"
       showAction
       actionText="重新连接"
       @clickAction="onReconnect"
-      buttonColor="#ff3000"
+      buttonColor="var(--ui-BG-Main)"
     />
     <s-empty
       v-else-if="errCode === 'TemplateError'"
-      icon="/static/internet-empty.png"
-      text="未找到模板"
+      icon="/static/images/internet-empty.png"
+      text="应用维护中，请稍候再试"
       showAction
       actionText="重新加载"
       @clickAction="onReconnect"
-      buttonColor="#ff3000"
+      buttonColor="var(--ui-BG-Main)"
     />
     <s-empty
       v-else-if="errCode !== ''"
-      icon="/static/internet-empty.png"
+      icon="/static/images/internet-empty.png"
       :text="errMsg"
       showAction
       actionText="重新加载"
       @clickAction="onReconnect"
-      buttonColor="#ff3000"
+      buttonColor="var(--ui-BG-Main)"
     />
   </view>
 </template>

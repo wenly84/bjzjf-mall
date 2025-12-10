@@ -10,14 +10,14 @@ const app = defineStore({
   state: () => ({
     info: {
       // 应用信息
-      name: '', // 商城名称
-      logo: '', // logo
-      version: '', // 版本号
-      copyright: '', // 版权信息 I
-      copytime: '', // 版权信息 II
-
-      cdnurl: '', // 云存储域名
-      filesystem: '', // 云存储平台
+      name: '手心云商',
+      logo: 'https://www.hansi.site/static/image/mall/logo.png',
+      version: '1.3.1',
+      copyright: '手心云商',
+      copytime: 'Copyright© 2024-2028',
+      url: 'https://www.hansi.site',
+      cdnurl: 'https://www.hansi.site', // 云存储域名
+      filesystem: 'https://www.hansi.site', // 云存储平台
     },
     platform: {
       share: {
@@ -49,34 +49,39 @@ const app = defineStore({
     // 获取ZjfShop应用配置和模板
     async init(templateId = null) {
       // 检查网络
-      const networkStatus = await $platform.checkNetwork();
-      if (!networkStatus) {
-        $router.error('NetworkError');
+      if (!(await $platform.checkNetwork())) {
+        $router.error('NetworkError', '当前网络不可用，请检查后重试');
+        return;
       }
-
-      // 加载装修配置
-      await adaptTemplate(this.template, templateId);
+      try {
+        await adaptTemplate(this.template, templateId);
+        return true;
+      } catch (error) {
+        console.error('Init Error:', error);
+        $router.error('InitError', error.message || '加载失败');
+      }
 
       // 智匠坊科技,未来支持管理后台可配
       if (true) {
         this.info = {
-          name: '智匠坊商城',
-          logo: 'https://static.hansi.site/ruoyi-vue-pro-logo.png',
-          version: '1.0.0',
-          copyright: '智匠坊商城',
+          name: '手心云商',
+          logo: 'https://www.hansi.site/static/image/mall/logo.png',
+          version: '1.3.1',
+          copyright: '手心云商',
           copytime: 'Copyright© 2024-2028',
-
-          cdnurl: 'https://file.hansi.site', // 云存储域名
-          filesystem: 'minio', // 云存储平台
+          url: 'https://www.hansi.site',
+          cdnurl: 'https://www.hansi.site', // 云存储域名
+          //filesystem: 'minio', // 云存储平台
+          filesystem: 'qiniu', // 云存储平台
         };
         this.platform = {
           share: {
             methods: ['poster', 'link'],
             linkAddress: 'http://127.0.0.1:3000',
             posterInfo: {
-              user_bg: '/static/img/shop/config/user-poster-bg.png',
-              goods_bg: '/static/img/shop/config/goods-poster-bg.png',
-              groupon_bg: '/static/img/shop/config/groupon-poster-bg.png',
+              user_bg: '/static/image/mall/user-poster-bg.png',
+              goods_bg: '/static/image/mall/goods-poster-bg.png',
+              groupon_bg: '/static/image/mall/groupon-poster-bg.png',
             },
           },
           bind_mobile: 0,
@@ -88,10 +93,10 @@ const app = defineStore({
         sysStore.setTheme();
 
         // 模拟用户登录
-        const userStore = user();
-        if (userStore.isLogin) {
-          userStore.loginAfter();
-        }
+        //const userStore = user();
+        //if (userStore.isLogin) {
+        //userStore.loginAfter();
+        //}
         return Promise.resolve(true);
       } else {
         $router.error('InitError', res.msg || '加载失败');
@@ -108,23 +113,23 @@ const app = defineStore({
   },
 });
 
-// todo: @owen 先做数据适配，后期重构
 const adaptTemplate = async (appTemplate, templateId) => {
   const { data: diyTemplate } = templateId
-    ? // 查询指定模板，一般是预览时使用
-      await DiyApi.getDiyTemplate(templateId)
+    ? await DiyApi.getDiyTemplate(templateId)
     : await DiyApi.getUsedDiyTemplate();
   // 模板不存在
   if (!diyTemplate) {
     $router.error('TemplateError');
     return;
   }
-
   const tabBar = diyTemplate?.property?.tabBar;
   if (tabBar) {
     appTemplate.basic.tabbar = tabBar;
     if (tabBar?.theme) {
       appTemplate.basic.theme = tabBar?.theme;
+	  const sysStore = sys();
+	  sysStore.setTheme(tabBar?.theme);
+	  //sysStore.setMode("light");
     }
   }
   appTemplate.home = diyTemplate?.home;

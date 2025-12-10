@@ -1,9 +1,11 @@
 import $store from '@/sheep/store';
 import $helper from '@/sheep/helper';
 import dayjs from 'dayjs';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import test from '@/sheep/helper/test.js';
 import AuthUtil from '@/sheep/api/member/auth';
+
+import sheep from '@/sheep';
 
 // 打开授权弹框
 export function showAuthModal(type = 'smsLogin') {
@@ -34,6 +36,7 @@ export function closeAuthModal() {
 export function showShareModal() {
   $store('modal').$patch((state) => {
     state.share = true;
+    sheep.$store('app').platform.share.methods = ['forward'];
   });
 }
 

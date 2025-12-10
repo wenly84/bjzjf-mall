@@ -123,7 +123,7 @@
     },
     textColor: {
       type: String,
-      default: '#FF6000',
+      default: 'var(--ui-BG-Main)',
     },
     background: {
       type: String,
@@ -135,7 +135,7 @@
     },
     btnTextColor: {
       type: String,
-      default: '#FF6000',
+      default: 'var(--ui-BG-Main)',
     },
     state: {
       type: Number,

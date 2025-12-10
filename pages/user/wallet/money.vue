@@ -49,7 +49,11 @@
         :current="state.currentTab"
       ></su-tabs>
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" text="暂无数据" icon="/static/data-empty.png" />
+    <s-empty
+      v-if="state.pagination.total === 0"
+      text="暂无数据"
+      icon="/static/images/data-empty.png"
+    />
 
     <!-- 钱包记录 -->
     <view v-if="state.pagination.total > 0">
@@ -69,7 +73,7 @@
             </view>
           </view>
           <text class="time">
-            {{ sheep.$helper.timeFormat(state.createTime, 'yyyy-mm-dd hh:MM:ss') }}
+            {{ sheep.$helper.timeFormat(item.createTime, 'yyyy-mm-dd hh:MM:ss') }}
           </text>
         </view>
       </view>
@@ -94,7 +98,7 @@
   import { fen2yuan } from '@/sheep/hooks/useGoods';
   import { resetPagination } from '@/sheep/util';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/wallet_card_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/user/wallet_card_bg.png');
 
   // 数据
   const state = reactive({
@@ -172,7 +176,7 @@
 
   onLoad(() => {
     state.today = dayjs().format('YYYY-MM-DD');
-    state.date = [state.today, state.today];
+	state.date = [dayjs().subtract(1, 'month').format('YYYY-MM-DD'),state.today];
     getLogList();
     getSummary();
     // 刷新钱包的缓存
@@ -268,7 +272,7 @@
         border-radius: 30px;
         font-size: 26rpx;
         font-weight: 500;
-        background-color: $white;
+        background-color: #f2f2f2;
         color: var(--ui-BG-Main);
       }
     }

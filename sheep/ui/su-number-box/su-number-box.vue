@@ -216,10 +216,10 @@
   }
 
   .groupon-btn {
-    color: #ff6000;
+    color: var(--ui-BG-Main);
   }
 
   .seckill-btn {
-    color: #ff5854;
+    color: var(--ui-BG-Main);
   }
 </style>

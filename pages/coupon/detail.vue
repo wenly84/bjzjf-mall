@@ -8,7 +8,7 @@
           <view class="tag-box ss-flex ss-col-center ss-row-center">
             <image
               class="tag-image"
-              :src="sheep.$url.static('/static/img/shop/app/coupon_icon.png')"
+              :src="sheep.$url.static('/static/image/mall/app/coupon_icon.png')"
               mode="aspectFit"
             />
           </view>
@@ -138,7 +138,7 @@
       <s-empty
         v-if="state.coupon.productScope === 3 && state.pagination.total === 0"
         paddingTop="0"
-        icon="/static/soldout-empty.png"
+        icon="/static/images/soldout-empty.png"
         text="暂无商品"
       />
     </view>
@@ -347,6 +347,7 @@
         line-height: 80rpx;
         background: #e5e5e5;
         border-radius: 40rpx;
+        background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
         color: $white;
       }
 

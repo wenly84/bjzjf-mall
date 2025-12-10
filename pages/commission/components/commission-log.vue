@@ -2,7 +2,10 @@
 <template>
   <view class="distribution-log-wrap">
     <view class="header-box">
-      <image class="header-bg" :src="sheep.$url.static('/static/img/shop/commission/title2.png')" />
+      <image
+        class="header-bg"
+        :src="sheep.$url.static('/static/image/mall/commission/title2.png')"
+      />
       <view class="ss-flex header-title">
         <view class="title">实时动态</view>
         <text class="cicon-forward" />
@@ -25,7 +28,7 @@
               <view class="ss-flex ss-col-center">
                 <image
                   class="log-img"
-                  :src="sheep.$url.static('/static/img/shop/avatar/notice.png')"
+                  :src="sheep.$url.static('/static/image/mall/avatar/notice.png')"
                   mode="aspectFill"
                 />
               </view>
@@ -63,7 +66,7 @@
       list: [],
       total: 0,
       pageNo: 1,
-      pageSize: 1,
+      pageSize: 8,
     },
   });
 
@@ -95,20 +98,20 @@
 
 <style lang="scss" scoped>
   .distribution-log-wrap {
-    width: 690rpx;
-    margin: 0 auto;
-    margin-bottom: 20rpx;
-    border-radius: 12rpx;
+    // width: 690rpx;
+    margin: 0 16rpx 20rpx 16rpx;
+    border-radius: 8rpx;
     z-index: 3;
     position: relative;
-
+    border: 2rpx solid var(--ui-BG-Main-light);
     .header-box {
-      width: 690rpx;
       height: 76rpx;
       position: relative;
 
       .header-bg {
-        width: 690rpx;
+		border-radius: 8rpx;
+		background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
+        width: 100%;
         height: 76rpx;
       }
 
@@ -121,21 +124,21 @@
       .title {
         font-size: 28rpx;
         font-weight: 500;
-        color: #ffffff;
+        color: $white;
         line-height: 30rpx;
       }
 
       .cicon-forward {
         font-size: 30rpx;
         font-weight: 400;
-        color: #ffffff;
+        color: $white;
         line-height: 30rpx;
       }
     }
 
     .log-scroll {
       height: 600rpx;
-      background: #fdfae9;
+      background: $white;
       padding: 10rpx 20rpx 0;
       box-sizing: border-box;
       border-radius: 0 0 12rpx 12rpx;

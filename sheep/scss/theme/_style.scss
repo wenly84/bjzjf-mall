@@ -12,7 +12,7 @@
 }
 @media (prefers-color-scheme: dark) {
   .theme-auto {
-    @include theme-dark;
+    @include theme-light;
   }
 }
 
@@ -45,7 +45,7 @@
     box-shadow: var(--ui-Main-box-shadow) !important;
   }
   .ui-BG-Main-light {
-    background: var(----ui-BG-Main-light) !important;
+    background: var(--ui-BG-Main-light) !important;
     color: var(--ui-BG-Main#{$value}) !important;
   }
 }

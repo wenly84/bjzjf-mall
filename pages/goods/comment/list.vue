@@ -13,7 +13,11 @@
         <comment-item :item="item" />
       </view>
     </view>
-    <s-empty v-if="state.pagination.total === 0" text="暂无数据" icon="/static/data-empty.png" />
+    <s-empty
+      v-if="state.pagination.total === 0"
+      text="暂无数据"
+      icon="/static/images/data-empty.png"
+    />
     <!-- 下拉 -->
     <uni-load-more
       v-if="state.pagination.total > 0"
@@ -47,7 +51,7 @@
       list: [],
       total: 0,
       pageNo: 1,
-      pageSize: 1,
+      pageSize: 8,
     },
   });
 

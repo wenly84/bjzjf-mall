@@ -296,31 +296,31 @@ export default class SheepPay {
 export function getPayMethods(channels) {
   const payMethods = [
     {
-      icon: '/static/img/shop/pay/wechat.png',
+      icon: '/static/image/mall/pay/wechat.png',
       title: '微信支付',
       value: 'wechat',
       disabled: true,
     },
     {
-      icon: '/static/img/shop/pay/alipay.png',
+      icon: '/static/image/mall/pay/alipay.png',
       title: '支付宝支付',
       value: 'alipay',
       disabled: true,
     },
     {
-      icon: '/static/img/shop/pay/wallet.png',
+      icon: '/static/image/mall/pay/wallet.png',
       title: '余额支付',
       value: 'wallet',
       disabled: true,
     },
     {
-      icon: '/static/img/shop/pay/apple.png',
+      icon: '/static/image/mall/pay/apple.png',
       title: 'Apple Pay',
       value: 'apple',
       disabled: true,
     },
     {
-      icon: '/static/img/shop/pay/wallet.png',
+      icon: '/static/image/mall/pay/wallet.png',
       title: '模拟支付',
       value: 'mock',
       disabled: true,
@@ -353,7 +353,7 @@ export function getPayMethods(channels) {
   if (channels.includes('wallet')) {
     walletMethod.disabled = false;
   }
-  // 4. 处理【苹果支付】TODO 智匠坊科技：未来接入
+  // 4. 处理【苹果支付】TODO
   // 5. 处理【模拟支付】
   const mockMethod = payMethods[4];
   if (channels.includes('mock')) {

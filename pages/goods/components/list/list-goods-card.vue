@@ -97,7 +97,7 @@
 
     .md-goods-price {
       font-size: 30rpx;
-      color: $red;
+      color: var(--ui-BG-Main);
     }
   }
 </style>

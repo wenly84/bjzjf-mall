@@ -36,7 +36,7 @@
       @close="state.showFilter = false"
     >
       <view class="filter-list-box">
-        <view
+       <view
           class="filter-item"
           v-for="(item, index) in state.tabList[state.currentTab].list"
           :key="item.value"
@@ -53,8 +53,7 @@
       <view
         class="ss-p-l-20 ss-p-r-20 ss-m-b-20"
         v-for="item in state.pagination.list"
-        :key="item.id"
-      >
+        :key="item.id">
         <s-goods-column
           class=""
           size="lg"
@@ -68,8 +67,7 @@
     <!-- 情况二：双列布局 -->
     <view
       v-if="!state.iconStatus && state.pagination.total > 0"
-      class="ss-flex ss-flex-wrap ss-p-x-20 ss-m-t-20 ss-col-top"
-    >
+      class="ss-flex ss-flex-wrap ss-p-x-20 ss-m-t-20 ss-col-top">
       <view class="goods-list-box">
         <view class="left-list" v-for="item in state.leftGoodsList" :key="item.id">
           <s-goods-column
@@ -113,7 +111,11 @@
       }"
       @tap="loadMore"
     />
-    <s-empty v-if="state.pagination.total === 0" icon="/static/soldout-empty.png" text="暂无商品" />
+    <s-empty
+      v-if="state.pagination.total === 0"
+      icon="/static/images/soldout-empty.png"
+      text="暂无商品"
+    />
   </s-layout>
 </template>
 
@@ -182,23 +184,29 @@
   let count = 0;
   let leftHeight = 0;
   let rightHeight = 0;
-
+  
   // 处理双列布局 leftGoodsList + rightGoodsList
-  function mountMasonry(height = 0, where = 'left') {
+  function mountMasonry(height = 0,where = 'left') {	  
     if (!state.pagination.list[count]) {
       return;
     }
 
     if (where === 'left') {
       leftHeight += height;
-    } else {
+    } else{
       rightHeight += height;
     }
-    if (leftHeight <= rightHeight) {
-      state.leftGoodsList.push(state.pagination.list[count]);
-    } else {
-      state.rightGoodsList.push(state.pagination.list[count]);
-    }
+    // if (leftHeight <= rightHeight) {
+    //   state.leftGoodsList.push(state.pagination.list[count]);
+    // } else {
+    //   state.rightGoodsList.push(state.pagination.list[count]);
+    // }
+	
+	if (count % 2 == 0 ) {
+	  state.leftGoodsList.push(state.pagination.list[count]);
+	} else if (count % 2 == 1 ) {
+	  state.rightGoodsList.push(state.pagination.list[count]);
+	}
     count++;
   }
 

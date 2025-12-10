@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'development') {
   baseUrl = import.meta.env.ZJFSHOP_BASE_URL;
 }
 version = import.meta.env.ZJFSHOP_VERSION;
-console.log(`[智匠坊商城 ${version}]  https://www.hansi.site`);
+console.log(`[手心云商 ${version}]  https://www.hansi.site`);
 
 export const apiPath = import.meta.env.ZJFSHOP_API_PATH;
 export const staticUrl = import.meta.env.ZJFSHOP_STATIC_URL;

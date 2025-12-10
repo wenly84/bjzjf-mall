@@ -134,7 +134,7 @@
 
 <style scoped lang="scss">
   .allAddress .font-color {
-    color: #e93323 !important;
+    color: var(--ui-BG-Main) !important;
   }
   .line2 {
     width: 504rpx;
@@ -193,11 +193,7 @@
 
   .allAddress {
     width: 100%;
-    background: linear-gradient(to bottom, #e93323 0%, #f5f5f5 100%);
-    // background-image: linear-gradient(to bottom, #e93323 0%, #f5f5f5 100%);
-    // background-image: -webkit-linear-gradient(to bottom, #e93323 0%, #f5f5f5 100%);
-    // background-image: -moz-linear-gradient(to bottom, #e93323 0%, #f5f5f5 100%);
-    //padding: 100rpx 30rpx 0 30rpx;
+    background: linear-gradient(to bottom, var(--ui-BG-Main) 0%, #f5f5f5 100%);
     padding-top: 100rpx;
     padding-bottom: 10rpx;
   }

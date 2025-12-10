@@ -88,6 +88,7 @@
         &:after {
           transform: translateX(21px);
         }
+        background-color: var(--ui-BG-Main);
       }
     }
     &.disabled {

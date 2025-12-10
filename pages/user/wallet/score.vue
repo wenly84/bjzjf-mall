@@ -70,7 +70,11 @@
           <view class="minus" v-else>{{ item.point }}</view>
         </view>
       </view>
-      <s-empty v-else text="暂无数据" icon="/static/data-empty.png" />
+      <s-empty
+        v-else
+        text="暂无数据"
+        icon="/static/images/data-empty.png"
+      />
     </view>
 
     <uni-load-more
@@ -151,8 +155,8 @@
   }
 
   onLoad(() => {
-    state.today = dayjs().format('YYYY-MM-DD');
-    state.date = [state.today, state.today];
+    state.today = dayjs().format('YYYY-MM-DD');	
+    state.date = [dayjs().subtract(1, 'month').format('YYYY-MM-DD'),state.today];
     getLogList();
   });
 
@@ -165,6 +169,7 @@
   function onChangeTime(e) {
     state.date[0] = e[0];
     state.date[1] = e[e.length - 1];
+	console.log('eeee',e)
     resetPagination(state.pagination);
     getLogList();
   }
@@ -173,7 +178,7 @@
     if (state.loadStatus === 'noMore') {
       return;
     }
-    state.pagination.pageNo++;
+    state.pagination.pageNo++;	
     getLogList();
   }
 
@@ -186,7 +191,7 @@
   .header-box {
     width: 100%;
     background: linear-gradient(180deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%)
-      no-repeat;
+    no-repeat;
     background-size: 750rpx 100%;
     padding: 0 0 120rpx 0;
     box-sizing: border-box;
@@ -246,7 +251,9 @@
       background: #fff;
       border-bottom: 1rpx solid #dfdfdf;
       padding: 30rpx;
-
+		.ss-flex-col {
+			max-width: 80%;
+		}
       .name {
         font-size: 28rpx;
 

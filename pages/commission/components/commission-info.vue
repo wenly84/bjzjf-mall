@@ -1,12 +1,19 @@
-<!-- 分销商信息  -->
+<!-- 分销商信息：展示用户基本资料 -->
 <template>
-  <!-- 用户资料 -->
+  <!-- 用户资料卡片 -->
   <view class="user-card ss-flex ss-col-bottom">
+    <!-- 卡片顶部内容 -->
     <view class="card-top ss-flex ss-row-between">
       <view class="ss-flex">
+        <!-- 用户头像 -->
         <view class="head-img-box">
-          <image class="head-img" :src="sheep.$url.cdn(userInfo.avatar)" mode="aspectFill"></image>
+          <image
+            class="head-img"
+            :src="sheep.$url.cdn(userInfo.avatar)"
+            mode="aspectFill"
+          ></image>
         </view>
+        <!-- 用户昵称 -->
         <view class="ss-flex-col">
           <view class="user-name">{{ userInfo.nickname }}</view>
         </view>
@@ -16,97 +23,65 @@
 </template>
 
 <script setup>
+  // 引入依赖模块
   import sheep from '@/sheep';
   import { computed, reactive } from 'vue';
 
+  // 获取用户信息
   const userInfo = computed(() => sheep.$store('user').userInfo);
-  const headerBg = sheep.$url.css('/static/img/shop/commission/background.png');
 
+  // 背景图路径
+  const headerBg = sheep.$url.css('/static/image/mall/commission/background.png');
+
+  // 定义组件状态
   const state = reactive({
-    showMoney: false,
+    showMoney: false, // 控制是否显示金额（预留功能）
   });
 </script>
 
 <style lang="scss" scoped>
-  // 用户资料卡片
-  .user-card {
-    width: 690rpx;
-    height: 192rpx;
-    margin: -88rpx 20rpx 0 20rpx;
-    padding-top: 88rpx;
-    background: v-bind(headerBg) no-repeat;
-    background-size: 100% 100%;
+/* 用户资料卡片样式 */
+.user-card {
+  height: 192rpx; /* 卡片高度 */
+  border-radius: 8rpx; /* 圆角 */
+  margin: 0rpx 16rpx 16rpx 16rpx; /* 外边距 */
+  padding-top: 50rpx; /* 上内边距 */
+  background: v-bind(headerBg) no-repeat, linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient)); /* 背景图片和渐变 */
+  background-size: 100% 100%; /* 背景大小为全覆盖 */
 
-    .head-img-box {
-      margin-right: 20rpx;
-      width: 100rpx;
-      height: 100rpx;
-      border-radius: 50%;
-      position: relative;
-      background: #fce0ad;
+  /* 用户头像样式 */
+  .head-img-box {
+    margin-left: 10rpx;
+    margin-right: 20rpx;
+    width: 100rpx; /* 宽度 */
+    height: 100rpx; /* 高度 */
+    border-radius: 50%; /* 圆形边框 */
+    position: relative;
+    background: $white; /* 背景为白色 */
 
-      .head-img {
-        width: 92rpx;
-        height: 92rpx;
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-
-    .card-top {
-      box-sizing: border-box;
-      padding-bottom: 34rpx;
-
-      .user-name {
-        font-size: 32rpx;
-        font-weight: bold;
-        color: #692e04;
-        line-height: 30rpx;
-        margin-bottom: 20rpx;
-      }
-
-      .log-btn {
-        width: 84rpx;
-        height: 42rpx;
-        border: 2rpx solid rgba(#ffffff, 0.33);
-        border-radius: 21rpx;
-        font-size: 22rpx;
-        font-weight: 400;
-        color: #ffffff;
-        margin-bottom: 20rpx;
-      }
-
-      .look-btn {
-        color: #fff;
-        width: 40rpx;
-        height: 40rpx;
-      }
-    }
-
-    .user-info-box {
-      .tag-box {
-        background: #ff6000;
-        border-radius: 18rpx;
-        line-height: 36rpx;
-
-        .tag-img {
-          width: 36rpx;
-          height: 36rpx;
-          border-radius: 50%;
-          margin-left: -2rpx;
-        }
-
-        .tag-title {
-          font-size: 24rpx;
-          padding: 0 10rpx;
-          font-weight: 500;
-          line-height: 36rpx;
-          color: #fff;
-        }
-      }
+    .head-img {
+      width: 92rpx; /* 头像宽度 */
+      height: 92rpx; /* 头像高度 */
+      border-radius: 50%; /* 圆形边框 */
+      position: absolute; /* 绝对定位 */
+      top: 50%; /* 垂直居中 */
+      left: 50%; /* 水平居中 */
+      transform: translate(-50%, -50%); /* 中心点对齐 */
     }
   }
+
+  /* 卡片顶部样式 */
+  .card-top {
+    box-sizing: border-box; /* 包含内边距和边框 */
+    padding-bottom: 34rpx; /* 下内边距 */
+
+    .user-name {
+      font-size: 32rpx; /* 字体大小 */
+      font-weight: bold; /* 字体加粗 */
+      color: $white; /* 字体颜色为白色 */
+      line-height: 30rpx; /* 行高 */
+      margin-bottom: 20rpx; /* 下边距 */
+    }
+  }
+}
 </style>

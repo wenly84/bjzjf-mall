@@ -9,14 +9,14 @@
         placeholder="请输入你要咨询的问题"
       ></uni-easyinput>
     </view>
-    <text class="sicon-basic bq" @tap.stop="onTools('emoji')"></text>
+    <!-- <text class="sicon-basic bq" @tap.stop="onTools('emoji')"></text> -->
     <text
       v-if="!message"
       class="sicon-edit"
       :class="{ 'is-active': toolsMode === 'tools' }"
       @tap.stop="onTools('tools')"
     ></text>
-    <button v-if="message" class="ss-reset-button send-btn" @tap="sendMessage"> 发送 </button>
+    <button class="ss-reset-button send-btn" @tap="sendMessage"> 发送 </button>
   </view>
 </template>
 

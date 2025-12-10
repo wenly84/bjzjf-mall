@@ -33,7 +33,7 @@
     <s-empty
       v-if="state.list.length === 0 && !state.loading"
       text="暂无收货地址"
-      icon="/static/data-empty.png"
+      icon="/static/images/data-empty.png"
     />
   </s-layout>
 </template>

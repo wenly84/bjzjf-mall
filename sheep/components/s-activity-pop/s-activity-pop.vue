@@ -7,8 +7,7 @@
         class="model-content ss-m-t-50"
         scroll-y
         :scroll-with-animation="false"
-        :enable-back-to-top="true"
-      >
+        :enable-back-to-top="true">
         <view v-for="item in state.activityInfo" :key="item.id">
           <view class="ss-flex ss-col-top ss-m-b-40" @tap="onGoodsList(item)">
             <view class="model-content-tag ss-flex ss-row-center">满减</view>

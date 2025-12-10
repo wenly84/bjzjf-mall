@@ -63,7 +63,7 @@
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
   const pageHeight =
     (safeArea.height + safeAreaInsets.bottom) * 2 + statusBarHeight - sysNavBar - 350;
-  const headerBg = sheep.$url.css('/static/img/shop/goods/groupon-header.png');
+  const headerBg = sheep.$url.css('/static/image/mall/goods/groupon-header.png');
 
   const state = reactive({
     pagination: {
@@ -119,7 +119,7 @@
     width: 100%;
     height: 458rpx;
     margin-top: -88rpx;
-    background: v-bind(headerBg) no-repeat;
+    background: v-bind(headerBg) no-repeat , linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));;
     background-size: 100% 100%;
   }
   .list-content {
@@ -177,7 +177,7 @@
           font-weight: 500;
           width: auto;
           height: auto;
-          background: linear-gradient(90deg, #ff6600 0%, #fe832a 100%);
+          background: linear-gradient(90deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
           color: #ffffff;
           border-radius: 19rpx;
           padding: 4rpx 14rpx;
@@ -217,7 +217,7 @@
           border-radius: 25rpx;
           font-size: 24rpx;
           color: #fff;
-          background: linear-gradient(90deg, #ff6600 0%, #fe832a 100%);
+          background: linear-gradient(90deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
         }
       }
     }

@@ -38,11 +38,9 @@
             <!-- #endif -->
           </view>
           <view class="store-distance ss-flex ss-row-center" @tap.stop="showMaoLocation(item)">
-            <text class="addressTxt" v-if="item.distance"
-              >距离{{ item.distance.toFixed(2) }}千米</text
-            >
+            <text class="addressTxt" v-if="item.distance">距离{{ item.distance.toFixed(2) }}千米</text>
             <text class="addressTxt" v-else>查看地图</text>
-            <view class="iconfont">
+            <view class="iconfont" style="color: var(--ui-BG-Main);">
               <view class="ss-rest-button">
                 <text class="_icon-forward" />
               </view>
@@ -220,12 +218,12 @@
   }
 
   .store-cent-left {
-    //width: 45%;
-    flex: 2;
+    width: 55%;
+    // flex: 2;
   }
 
   .store-img {
-    flex: 1;
+    // flex: 1;
     width: 120rpx;
     height: 120rpx;
     border-radius: 6rpx;
@@ -242,11 +240,19 @@
     font-size: 30rpx;
     margin-bottom: 22rpx;
     font-weight: 800;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
   }
 
   .store-address {
     color: #666666;
     font-size: 24rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
   }
 
   .store-phone {
@@ -257,7 +263,7 @@
     display: block;
     text-align: center;
     line-height: 48rpx;
-    background-color: #e83323;
+    background-color: var(--ui-BG-Main);
     margin-bottom: 22rpx;
     text-decoration: none;
   }
@@ -265,6 +271,9 @@
   .store-distance {
     font-size: 22rpx;
     color: #e83323;
+	.addressTxt{
+		color: var(--ui-BG-Main);
+	}
   }
 
   .iconfont {

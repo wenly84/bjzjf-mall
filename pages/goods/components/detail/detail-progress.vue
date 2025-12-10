@@ -34,7 +34,7 @@
 
   .progerss-active {
     height: 24rpx;
-    background: linear-gradient(86deg, #f60600, #d00500);
+    background: var(--ui-BG-Main);
     border-radius: 12rpx;
   }
 </style>

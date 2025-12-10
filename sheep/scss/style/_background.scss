@@ -32,7 +32,6 @@
   @each $colorsub, $valuesub in $colors {
     @if $color != $colorsub {
       .bg-#{$color}-#{$colorsub} {
-        // background-color: $value !important;
         background-image: linear-gradient(130deg, $value, $valuesub) !important;
         color: #ffffff !important;
       }

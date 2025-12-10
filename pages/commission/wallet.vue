@@ -78,7 +78,7 @@
     </su-sticky>
     <s-empty
       v-if="state.pagination.total === 0"
-      icon="/static/data-empty.png"
+      icon="/static/images/data-empty.png"
       text="暂无数据"
     ></s-empty>
 
@@ -155,7 +155,7 @@
   import { fen2yuan } from '@/sheep/hooks/useGoods';
   import { resetPagination } from '@/sheep/util';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/wallet_card_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/user/wallet_card_bg.png');
 
   const state = reactive({
     showMoney: false,
@@ -168,7 +168,7 @@
       list: [],
       total: 0,
       pageNo: 1,
-      pageSize: 1,
+      pageSize: 8,
     },
     loadStatus: '',
 
@@ -263,7 +263,7 @@
 
   onLoad(async (options) => {
     state.today = dayjs().format('YYYY-MM-DD');
-    state.date = [state.today, state.today];
+    state.date = [dayjs().subtract(1, 'month').format('YYYY-MM-DD'),state.today];
     if (options.type === 2) {
       // 切换到“提现” tab 下
       state.currentTab = 1;

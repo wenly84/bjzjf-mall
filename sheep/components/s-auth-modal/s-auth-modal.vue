@@ -6,15 +6,13 @@
       <account-login
         v-if="authType === 'accountLogin'"
         :agreeStatus="state.protocol"
-        @onConfirm="onConfirm"
-      />
+        @onConfirm="onConfirm"/>
 
       <!-- 2. 短信登录  smsLogin -->
       <sms-login
         v-if="authType === 'smsLogin'"
         :agreeStatus="state.protocol"
-        @onConfirm="onConfirm"
-      />
+        @onConfirm="onConfirm"/>
 
       <!-- 3. 忘记密码 resetPassword-->
       <reset-password v-if="authType === 'resetPassword'" />
@@ -31,16 +29,14 @@
       <!-- 7. 第三方登录 -->
       <view
         v-if="['accountLogin', 'smsLogin'].includes(authType)"
-        class="auto-login-box ss-flex ss-flex-col ss-row-center ss-col-center"
-      >
+        class="auto-login-box ss-flex ss-flex-col ss-row-center ss-col-center">
         <!-- 7.1 微信小程序的快捷登录 -->
         <view v-if="sheep.$platform.name === 'WechatMiniProgram'" class="ss-flex register-box">
           <view class="register-title">还没有账号?</view>
           <button
             class="ss-reset-button login-btn"
             open-type="getPhoneNumber"
-            @getphonenumber="getPhoneNumber"
-          >
+            @getphonenumber="getPhoneNumber">
             快捷登录
           </button>
           <view class="circle" />
@@ -50,14 +46,12 @@
         <button
           v-if="
             ['WechatOfficialAccount', 'WechatMiniProgram', 'App'].includes(sheep.$platform.name) &&
-            sheep.$platform.isWechatInstalled
-          "
+            sheep.$platform.isWechatInstalled"
           @tap="thirdLogin('wechat')"
-          class="ss-reset-button auto-login-btn"
-        >
+          class="ss-reset-button auto-login-btn">
           <image
             class="auto-login-img"
-            :src="sheep.$url.static('/static/img/shop/platform/wechat.png')"
+            :src="sheep.$url.static('/static/image/mall/platform/wechat.png')"
           />
         </button>
 
@@ -65,12 +59,10 @@
         <button
           v-if="sheep.$platform.os === 'ios' && sheep.$platform.name === 'App'"
           @tap="thirdLogin('apple')"
-          class="ss-reset-button auto-login-btn"
-        >
+          class="ss-reset-button auto-login-btn">
           <image
             class="auto-login-img"
-            :src="sheep.$url.static('/static/img/shop/platform/apple.png')"
-          />
+            :src="sheep.$url.static('/static/image/mall/platform/apple.png')" />
         </button>
       </view>
 
@@ -78,8 +70,7 @@
       <view
         v-if="['accountLogin', 'smsLogin'].includes(authType)"
         class="agreement-box ss-flex ss-row-center"
-        :class="{ shake: currentProtocol }"
-      >
+        :class="{ shake: currentProtocol }">
         <label class="radio ss-flex ss-col-center" @tap="onChange">
           <radio
             :checked="state.protocol"

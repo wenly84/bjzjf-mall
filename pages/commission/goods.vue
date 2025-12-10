@@ -39,7 +39,7 @@
     </view>
     <s-empty
       v-if="state.pagination.total === 0"
-      icon="/static/goods-empty.png"
+      icon="/static/images/goods-empty.png"
       text="暂无推广商品"
     />
     <!-- 加载更多 -->
@@ -70,7 +70,7 @@
       list: [],
       total: 0,
       pageNo: 1,
-      pageSize: 1,
+      pageSize: 8,
     },
     loadStatus: '',
     shareInfo: {},
@@ -144,7 +144,7 @@
     .commission-num {
       font-size: 24rpx;
       font-weight: 500;
-      color: $red;
+      color: var(--ui-BG-Main);
     }
 
     .share-btn {

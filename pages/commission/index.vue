@@ -1,12 +1,11 @@
 <!-- 分销中心  -->
 <template>
   <s-layout
-    navbar="inner"
+    navbar="normal"
     class="index-wrap"
     title="分销中心"
     :bgStyle="bgStyle"
-    :onShareAppMessage="shareInfo"
-  >
+    :onShareAppMessage="shareInfo">
     <!-- 分销商信息 -->
     <commission-info />
     <!-- 账户信息 -->
@@ -44,7 +43,7 @@
   });
 
   const bgStyle = {
-    color: '#F7D598',
+    color: 'var(--ui-BG-Main)',
   };
 </script>
 

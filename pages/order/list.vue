@@ -9,7 +9,11 @@
         :current="state.currentTab"
       />
     </su-sticky>
-    <s-empty v-if="state.pagination.total === 0" icon="/static/order-empty.png" text="暂无订单" />
+    <s-empty
+      v-if="state.pagination.total === 0"
+      icon="/static/images/order-empty.png"
+      text="暂无订单"
+    />
     <view v-if="state.pagination.total > 0">
       <view
         class="bg-white order-list-card-box ss-r-10 ss-m-t-14 ss-m-20"
@@ -34,71 +38,61 @@
         </view>
         <view class="pay-box ss-m-t-30 ss-flex ss-row-right ss-p-r-20">
           <view class="ss-flex ss-col-center">
-            <view class="discounts-title pay-color"
-              >共 {{ order.productCount }} 件商品,总金额:</view
-            >
+            <view class="discounts-title pay-color">
+              共 {{ order.productCount }} 件商品,总金额:</view>
             <view class="discounts-money pay-color"> ￥{{ fen2yuan(order.payPrice) }} </view>
           </view>
         </view>
         <view
           class="order-card-footer ss-flex ss-col-center ss-p-x-20"
-          :class="order.buttons.length > 3 ? 'ss-row-between' : 'ss-row-right'"
-        >
+          :class="order.buttons.length > 3 ? 'ss-row-between' : 'ss-row-right'">
           <view class="ss-flex ss-col-center">
             <button
               v-if="order.buttons.includes('combination')"
-              class="tool-btn ss-reset-button"
-              @tap.stop="onOrderGroupon(order)"
-            >
+              class="tool-btn ss-reset-button ui-BG-Main-Gradient"
+              @tap.stop="onOrderGroupon(order)">
               拼团详情
             </button>
             <button
               v-if="order.buttons.length === 0"
-              class="tool-btn ss-reset-button"
-              @tap.stop="onOrderDetail(order.id)"
-            >
+              class="tool-btn ss-reset-button ui-BG-Main-Gradient"
+              @tap.stop="onOrderDetail(order.id)">
               查看详情
             </button>
             <button
               v-if="order.buttons.includes('confirm')"
-              class="tool-btn ss-reset-button"
-              @tap.stop="onConfirm(order)"
-            >
+              class="tool-btn ss-reset-button ui-BG-Main-Gradient"
+              @tap.stop="onConfirm(order)">
               确认收货
             </button>
             <button
               v-if="order.buttons.includes('express')"
-              class="tool-btn ss-reset-button"
-              @tap.stop="onExpress(order.id)"
-            >
+              class="tool-btn ss-reset-button ui-BG-Main-Gradient"
+              @tap.stop="onExpress(order.id)">
               查看物流
             </button>
             <button
               v-if="order.buttons.includes('cancel')"
-              class="tool-btn ss-reset-button"
-              @tap.stop="onCancel(order.id)"
-            >
+              class="tool-btn ss-reset-button ui-BG-Main-Gradient"
+              @tap.stop="onCancel(order.id)">
               取消订单
             </button>
             <button
               v-if="order.buttons.includes('comment')"
-              class="tool-btn ss-reset-button"
-              @tap.stop="onComment(order.id)"
-            >
+              class="tool-btn ss-reset-button ui-BG-Main-Gradient"
+              @tap.stop="onComment(order.id)">
               评价
             </button>
             <button
               v-if="order.buttons.includes('delete')"
-              class="delete-btn ss-reset-button"
-              @tap.stop="onDelete(order.id)"
-            >
+              class="delete-btn ss-reset-button ui-BG-Main-Gradient"
+              @tap.stop="onDelete(order.id)">
               删除订单
             </button>
             <button
               v-if="order.buttons.includes('pay')"
               class="tool-btn ss-reset-button ui-BG-Main-Gradient"
-              @tap.stop="onPay(order.payOrderId)"
-            >
+              @tap.stop="onPay(order.payOrderId)">
               继续支付
             </button>
           </view>
@@ -368,7 +362,7 @@
   .tool-btn {
     width: 160rpx;
     height: 60rpx;
-    background: #f6f6f6;
+    background: var(--ui-BG-Main);
     font-size: 26rpx;
     border-radius: 30rpx;
     margin-right: 10rpx;
@@ -381,7 +375,7 @@
   .delete-btn {
     width: 160rpx;
     height: 56rpx;
-    color: #ff3000;
+    color: var(--ui-BG-Main);
     background: #fee;
     border-radius: 28rpx;
     font-size: 26rpx;

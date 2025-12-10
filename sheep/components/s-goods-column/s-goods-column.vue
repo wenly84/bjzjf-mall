@@ -6,8 +6,7 @@
       v-if="size === 'xs'"
       class="xs-goods-card ss-flex ss-col-stretch"
       :style="[elStyles]"
-      @tap="onClick"
-    >
+      @tap="onClick">
       <view v-if="tagStyle.show" class="tag-icon-box">
         <image class="tag-icon" :src="sheep.$url.cdn(tagStyle.src || tagStyle.imgUrl)"></image>
       </view>
@@ -18,20 +17,17 @@
       ></image>
       <view
         v-if="goodsFields.title?.show || goodsFields.name?.show || goodsFields.price?.show"
-        class="xs-goods-content ss-flex-col ss-row-around"
-      >
+        class="xs-goods-content ss-flex-col ss-row-around">
         <view
           v-if="goodsFields.title?.show || goodsFields.name?.show"
           class="xs-goods-title ss-line-1"
-          :style="[{ color: titleColor, width: titleWidth ? titleWidth + 'rpx' : '' }]"
-        >
+          :style="[{ color: titleColor, width: titleWidth ? titleWidth + 'rpx' : '' }]">
           {{ data.title || data.name }}
         </view>
         <view
           v-if="goodsFields.price?.show"
           class="xs-goods-price font-OPPOSANS"
-          :style="[{ color: goodsFields.price.color }]"
-        >
+          :style="[{ color: goodsFields.price.color }]">
           <text class="price-unit ss-font-24">{{ priceUnit }}</text>
           {{ isArray(data.price) ? fen2yuan(data.price[0]) : fen2yuan(data.price) }}
         </view>
@@ -46,25 +42,21 @@
       <image
         class="sm-img-box"
         :src="sheep.$url.cdn(data.image || data.picUrl)"
-        mode="aspectFill"
-      ></image>
+        mode="aspectFill"></image>
 
       <view
         v-if="goodsFields.title?.show || goodsFields.name?.show || goodsFields.price?.show"
         class="sm-goods-content"
-        :style="[{ color: titleColor, width: titleWidth ? titleWidth + 'rpx' : '' }]"
-      >
+        :style="[{ color: titleColor, width: titleWidth ? titleWidth + 'rpx' : '' }]">
         <view
           v-if="goodsFields.title?.show || goodsFields.name?.show"
-          class="sm-goods-title ss-line-1 ss-m-b-16"
-        >
+          class="sm-goods-title ss-line-1 ss-m-b-16">
           {{ data.title || data.name }}
         </view>
         <view
           v-if="goodsFields.price?.show"
           class="sm-goods-price font-OPPOSANS"
-          :style="[{ color: goodsFields.price.color }]"
-        >
+          :style="[{ color: goodsFields.price.color }]">
           <text class="price-unit ss-font-24">{{ priceUnit }}</text>
           {{ isArray(data.price) ? fen2yuan(data.price[0]) : fen2yuan(data.price) }}
         </view>
@@ -79,24 +71,20 @@
       <image
         class="md-img-box"
         :src="sheep.$url.cdn(data.image || data.picUrl)"
-        mode="widthFix"
-      ></image>
+        mode="widthFix"></image>
       <view
         class="md-goods-content ss-flex-col ss-row-around ss-p-b-20 ss-p-t-20 ss-p-x-16"
-        :id="elId"
-      >
+        :id="elId">
         <view
           v-if="goodsFields.title?.show || goodsFields.name?.show"
           class="md-goods-title ss-line-1"
-          :style="[{ color: titleColor, width: titleWidth ? titleWidth + 'rpx' : '' }]"
-        >
+          :style="[{ color: titleColor, width: titleWidth ? titleWidth + 'rpx' : '' }]">
           {{ data.title || data.name }}
         </view>
         <view
           v-if="goodsFields.subtitle?.show || goodsFields.introduction?.show"
           class="md-goods-subtitle ss-m-t-16 ss-line-1"
-          :style="[{ color: subTitleColor, background: subTitleBackground }]"
-        >
+          :style="[{ color: subTitleColor, background: subTitleBackground }]">
           {{ data.subtitle || data.introduction }}
         </view>
         <slot name="activity">
@@ -104,8 +92,7 @@
             <view
               class="activity-tag ss-m-r-10 ss-m-t-16"
               v-for="item in data.promos"
-              :key="item.id"
-            >
+              :key="item.id">
               {{ item.title }}
             </view>
           </view>
@@ -114,8 +101,7 @@
           <view
             v-if="goodsFields.price?.show"
             class="md-goods-price ss-m-t-16 font-OPPOSANS ss-m-r-10"
-            :style="[{ color: goodsFields.price.color }]"
-          >
+            :style="[{ color: goodsFields.price.color }]">
             <text class="price-unit ss-font-24">{{ priceUnit }}</text>
             {{ isArray(data.price) ? fen2yuan(data.price[0]) : fen2yuan(data.price) }}
           </view>
@@ -123,11 +109,9 @@
           <view
             v-if="
               (goodsFields.original_price?.show || goodsFields.marketPrice?.show) &&
-              (data.original_price > 0 || data.marketPrice > 0)
-            "
+              (data.original_price > 0 || data.marketPrice > 0)"
             class="goods-origin-price ss-m-t-16 font-OPPOSANS ss-flex"
-            :style="[{ color: originPriceColor }]"
-          >
+            :style="[{ color: originPriceColor }]">
             <text class="price-unit ss-font-20">{{ priceUnit }}</text>
             <view class="ss-m-l-8">{{ fen2yuan(data.marketPrice) }}</view>
           </view>
@@ -140,7 +124,7 @@
 
       <slot name="cart">
         <view class="cart-box ss-flex ss-col-center ss-row-center">
-          <image class="cart-icon" src="/static/img/shop/tabbar/category2.png" mode="" />
+          <image class="cart-icon" src="/static/image/mall/tabbar/category2.png" mode="" />
         </view>
       </slot>
     </view>
@@ -150,8 +134,7 @@
       v-if="size === 'lg'"
       class="lg-goods-card ss-flex ss-col-stretch"
       :style="[elStyles]"
-      @tap="onClick"
-    >
+      @tap="onClick">
       <view v-if="tagStyle.show" class="tag-icon-box">
         <image class="tag-icon" :src="sheep.$url.cdn(tagStyle.src || tagStyle.imgUrl)"></image>
       </view>
@@ -162,22 +145,19 @@
       <image
         class="lg-img-box"
         :src="sheep.$url.cdn(data.image || data.picUrl)"
-        mode="aspectFill"
-      ></image>
+        mode="aspectFill"></image>
       <view class="lg-goods-content ss-flex-1 ss-flex-col ss-row-between ss-p-b-10 ss-p-t-20">
         <view>
           <view
             v-if="goodsFields.title?.show || goodsFields.name?.show"
             class="lg-goods-title ss-line-2"
-            :style="[{ color: titleColor }]"
-          >
+            :style="[{ color: titleColor }]">
             {{ data.title || data.name }}
           </view>
           <view
             v-if="goodsFields.subtitle?.show || goodsFields.introduction?.show"
             class="lg-goods-subtitle ss-m-t-10 ss-line-1"
-            :style="[{ color: subTitleColor, background: subTitleBackground }]"
-          >
+            :style="[{ color: subTitleColor, background: subTitleBackground }]">
             {{ data.subtitle || data.introduction }}
           </view>
         </view>
@@ -193,19 +173,16 @@
             <view
               v-if="goodsFields.price?.show"
               class="lg-goods-price ss-m-r-12 ss-flex ss-col-bottom font-OPPOSANS"
-              :style="[{ color: goodsFields.price.color }]"
-            >
+              :style="[{ color: goodsFields.price.color }]">
               <text class="ss-font-24">{{ priceUnit }}</text>
               {{ isArray(data.price) ? fen2yuan(data.price[0]) : fen2yuan(data.price) }}
             </view>
             <view
               v-if="
                 (goodsFields.original_price?.show || goodsFields.marketPrice?.show) &&
-                (data.original_price > 0 || data.marketPrice > 0)
-              "
+                (data.original_price > 0 || data.marketPrice > 0)"
               class="goods-origin-price ss-flex ss-col-bottom font-OPPOSANS"
-              :style="[{ color: originPriceColor }]"
-            >
+              :style="[{ color: originPriceColor }]">
               <text class="price-unit ss-font-20">{{ priceUnit }}</text>
               <view class="ss-m-l-8">{{ fen2yuan(data.marketPrice) }}</view>
             </view>
@@ -230,23 +207,21 @@
       <image
         class="sl-img-box"
         :src="sheep.$url.cdn(data.image || data.picUrl)"
-        mode="aspectFill"
-      ></image>
+        mode="aspectFill">
+	  </image>
 
       <view class="sl-goods-content">
         <view>
           <view
             v-if="goodsFields.title?.show || goodsFields.name?.show"
             class="sl-goods-title ss-line-1"
-            :style="[{ color: titleColor }]"
-          >
+            :style="[{ color: titleColor }]">
             {{ data.title || data.name }}
           </view>
           <view
             v-if="goodsFields.subtitle?.show || goodsFields.introduction?.show"
             class="sl-goods-subtitle ss-m-t-16"
-            :style="[{ color: subTitleColor, background: subTitleBackground }]"
-          >
+            :style="[{ color: subTitleColor, background: subTitleBackground }]">
             {{ data.subtitle || data.introduction }}
           </view>
         </view>
@@ -256,8 +231,7 @@
               <view
                 class="activity-tag ss-m-r-10 ss-m-t-16"
                 v-for="item in data.promos"
-                :key="item.id"
-              >
+                :key="item.id">
                 {{ item.title }}
               </view>
             </view>
@@ -270,11 +244,9 @@
             <view
               v-if="
                 (goodsFields.original_price?.show || goodsFields.marketPrice?.show) &&
-                (data.original_price > 0 || data.marketPrice > 0)
-              "
+                (data.original_price > 0 || data.marketPrice > 0)"
               class="goods-origin-price ss-m-t-16 font-OPPOSANS ss-flex"
-              :style="[{ color: originPriceColor }]"
-            >
+              :style="[{ color: originPriceColor }]">
               <text class="price-unit ss-font-20">{{ priceUnit }}</text>
               <view class="ss-m-l-8">{{ fen2yuan(data.marketPrice) }}</view>
             </view>
@@ -285,9 +257,7 @@
         </view>
       </view>
 
-      <slot name="cart"
-        ><view class="buy-box ss-flex ss-col-center ss-row-center">去购买</view></slot
-      >
+      <slot name="cart"><view class="buy-box ss-flex ss-col-center ss-row-center">去购买</view></slot>
     </view>
   </view>
 </template>
@@ -494,7 +464,7 @@
     z-index: 2;
     width: 68rpx;
     height: 38rpx;
-    background: linear-gradient(90deg, #ff5854 0%, #ff2621 100%);
+    background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     border-radius: 10rpx 0px 10rpx 0px;
     font-size: 24rpx;
     font-weight: 500;
@@ -508,7 +478,7 @@
     z-index: 2;
     width: 68rpx;
     height: 38rpx;
-    background: linear-gradient(90deg, #fe832a 0%, #ff6600 100%);
+    background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     border-radius: 10rpx 0px 10rpx 0px;
     font-size: 24rpx;
     font-weight: 500;
@@ -569,7 +539,7 @@
 
     .xs-goods-price {
       font-size: 30rpx;
-      color: $red;
+      color: var(--ui-BG-Main);
     }
   }
 
@@ -597,7 +567,7 @@
 
     .sm-goods-price {
       font-size: 30rpx;
-      color: $red;
+      color: var(--ui-BG-Main);
     }
   }
 
@@ -612,6 +582,7 @@
 
     .md-img-box {
       width: 100%;
+      border-radius: 8px;
     }
 
     .md-goods-title {
@@ -627,7 +598,7 @@
 
     .md-goods-price {
       font-size: 30rpx;
-      color: $red;
+      color: var(--ui-BG-Main);
       line-height: 36rpx;
     }
 
@@ -679,7 +650,7 @@
 
     .lg-goods-price {
       font-size: 30rpx;
-      color: $red;
+      color: var(--ui-BG-Main);
       line-height: 36rpx;
     }
 
@@ -690,7 +661,7 @@
       z-index: 2;
       width: 120rpx;
       height: 50rpx;
-      background: linear-gradient(90deg, #fe8900, #ff5e00);
+      background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
       border-radius: 25rpx;
       font-size: 24rpx;
       color: #ffffff;
@@ -731,7 +702,7 @@
 
     .sl-goods-price {
       font-size: 30rpx;
-      color: $red;
+      color: var(--ui-BG-Main);
       line-height: 36rpx;
     }
 
@@ -742,7 +713,7 @@
       z-index: 2;
       width: 148rpx;
       height: 50rpx;
-      background: linear-gradient(90deg, #fe8900, #ff5e00);
+	  background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
       border-radius: 25rpx;
       font-size: 24rpx;
       color: #ffffff;

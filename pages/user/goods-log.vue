@@ -53,7 +53,7 @@
               :img="item.picUrl"
               :price="item.price"
               :skuText="item.introduction"
-              priceColor="#FF3000"
+              priceColor="var(--ui-BG-Main)"
               :titleWidth="400"
               @tap="
                 sheep.$router.go('/pages/goods/index', {
@@ -113,7 +113,7 @@
     <s-empty
       v-if="state.pagination.total === 0"
       text="暂无浏览记录"
-      icon="/static/collect-empty.png"
+      icon="/static/images/collect-empty.png"
     />
   </s-layout>
 </template>
@@ -254,7 +254,7 @@
 
     .cart-content {
       width: 100%;
-      padding: 0 20rpx;
+      padding: 0 15rpx;
       box-sizing: border-box;
       margin-top: 70rpx;
       .goods-box {
@@ -301,7 +301,7 @@
     }
 
     .price-text {
-      color: $red;
+      color: var(--ui-BG-Main);
       font-family: OPPOSANS;
     }
   }

@@ -2,16 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- 
+      设置 viewport 以确保在移动设备上拥有合适的显示效果，
+      禁用用户缩放，限制最小和最大缩放比例为 1.0 
+    -->
     <meta
       name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <title></title>
-    <!--preload-links-->
-    <!--app-context-->
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>手心云商</title> <!-- 设置页面标题 -->
+
+    <!-- 预加载关键资源（如字体、关键 CSS 等），以优化加载性能 -->
+    <!-- preload-links -->
+    
+    <!-- app-context: 注入应用上下文，如全局变量或其他环境信息 -->
+    <!-- app-context -->
   </head>
   <body>
-    <div id="app"><!--app-html--></div>
+    <!-- 
+      应用主容器，Vue 应用将挂载在此处。
+      通过 id="app" 供框架识别并渲染应用的根组件 
+    -->
+    <div id="app"><!-- app-html --></div>
+
+    <!-- 加载应用的主模块，使用 ES 模块类型以支持现代浏览器 -->
     <script type="module" src="/main.js"></script>
   </body>
 </html>

@@ -94,7 +94,7 @@
     },
     radius: {
       type: [String],
-      default: '',
+      default: '16',
     },
     marginBottom: {
       type: [String],

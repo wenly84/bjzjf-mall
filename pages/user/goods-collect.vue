@@ -30,8 +30,7 @@
         <view
           class="goods-box ss-r-10 ss-m-b-14"
           v-for="item in state.pagination.list"
-          :key="item.id"
-        >
+          :key="item.id">
           <view class="ss-flex ss-col-center">
             <label
               class="check-box ss-flex ss-col-center ss-p-l-10"
@@ -49,7 +48,7 @@
               :title="item.spuName"
               :img="item.picUrl"
               :price="item.price"
-              priceColor="#FF3000"
+              priceColor="var(--ui-BG-Main)"
               :titleWidth="400"
               @tap="
                 sheep.$router.go('/pages/goods/index', {
@@ -94,7 +93,11 @@
       }"
       @tap="loadMore"
     />
-    <s-empty v-if="state.pagination.total === 0" text="暂无收藏" icon="/static/collect-empty.png" />
+    <s-empty
+      v-if="state.pagination.total === 0"
+      text="暂无收藏"
+      icon="/static/images/collect-empty.png"
+    />
   </s-layout>
 </template>
 
@@ -220,7 +223,7 @@
     .cart-content {
       width: 100%;
       margin-top: 70rpx;
-      padding: 0 20rpx;
+      padding: 0 15rpx;
       box-sizing: border-box;
       .goods-box {
         background-color: #fff;

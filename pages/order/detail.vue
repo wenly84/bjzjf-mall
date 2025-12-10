@@ -13,34 +13,26 @@
     >
       <view class="ss-flex ss-m-t-32 ss-m-b-20">
         <image
-          v-if="
-            state.orderInfo.status_code == 'unpaid' ||
-            state.orderInfo.status === 10 || // 待发货
-            state.orderInfo.status_code == 'nocomment'
-          "
+          v-if="state.orderInfo.status_code == 'unpaid' || state.orderInfo.status === 10 || state.orderInfo.status_code == 'nocomment'"
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_loading.png')"
+          :src="sheep.$url.static('/static/image/mall/order/order_loading.png')"
         >
         </image>
-        <image
-          v-if="
-            state.orderInfo.status_code == 'completed' ||
-            state.orderInfo.status_code == 'refund_agree'
-          "
+        <image v-if="state.orderInfo.status_code == 'completed' ||state.orderInfo.status_code == 'refund_agree'"
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_success.png')"
+          :src="sheep.$url.static('/static/image/mall/order/order_success.png')"
         >
         </image>
         <image
           v-if="state.orderInfo.status_code == 'cancel' || state.orderInfo.status_code == 'closed'"
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_close.png')"
+          :src="sheep.$url.static('/static/image/mall/order/order_close.png')"
         >
         </image>
         <image
           v-if="state.orderInfo.status_code == 'noget'"
           class="state-img"
-          :src="sheep.$url.static('/static/img/shop/order/order_express.png')"
+          :src="sheep.$url.static('/static/image/mall/order/order_express.png')"
         >
         </image>
         <view class="ss-font-30">{{ formatOrderStatus(state.orderInfo) }}</view>
@@ -81,7 +73,7 @@
             <template #tool>
               <view class="ss-flex">
                 <button
-                  class="ss-reset-button apply-btn"
+                  class="ss-reset-button apply-btn  ui-BG-Main-Gradient"
                   v-if="[10, 20, 30].includes(state.orderInfo.status) && item.afterSaleStatus === 0"
                   @tap.stop="
                     sheep.$router.go('/pages/order/aftersale/apply', {
@@ -93,7 +85,7 @@
                   申请售后
                 </button>
                 <button
-                  class="ss-reset-button apply-btn"
+                  class="ss-reset-button apply-btn  ui-BG-Main-Gradient"
                   v-if="item.afterSaleStatus === 10"
                   @tap.stop="
                     sheep.$router.go('/pages/order/aftersale/detail', {
@@ -104,7 +96,7 @@
                   退款中
                 </button>
                 <button
-                  class="ss-reset-button apply-btn"
+                  class="ss-reset-button apply-btn  ui-BG-Main-Gradient"
                   v-if="item.afterSaleStatus === 20"
                   @tap.stop="
                     sheep.$router.go('/pages/order/aftersale/detail', {
@@ -208,7 +200,7 @@
     <su-fixed bottom placeholder bg="bg-white" v-if="state.orderInfo.buttons?.length">
       <view class="footer-box ss-flex ss-col-center ss-row-right">
         <button
-          class="ss-reset-button cancel-btn"
+          class="ss-reset-button cancel-btn ui-BG-Main-Gradient"
           v-if="state.orderInfo.buttons?.includes('cancel')"
           @tap="onCancel(state.orderInfo.id)"
         >
@@ -222,7 +214,7 @@
           继续支付
         </button>
         <button
-          class="ss-reset-button cancel-btn"
+          class="ss-reset-button cancel-btn ui-BG-Main-Gradient"
           v-if="state.orderInfo.buttons?.includes('combination')"
           @tap="
             sheep.$router.go('/pages/activity/groupon/detail', {
@@ -233,21 +225,21 @@
           拼团详情
         </button>
         <button
-          class="ss-reset-button cancel-btn"
+          class="ss-reset-button cancel-btn ui-BG-Main-Gradient"
           v-if="state.orderInfo.buttons?.includes('express')"
           @tap="onExpress(state.orderInfo.id)"
         >
           查看物流
         </button>
         <button
-          class="ss-reset-button cancel-btn"
+          class="ss-reset-button cancel-btn ui-BG-Main-Gradient"
           v-if="state.orderInfo.buttons?.includes('confirm')"
           @tap="onConfirm(state.orderInfo.id)"
         >
           确认收货
         </button>
         <button
-          class="ss-reset-button cancel-btn"
+          class="ss-reset-button cancel-btn ui-BG-Main-Gradient"
           v-if="state.orderInfo.buttons?.includes('comment')"
           @tap="onComment(state.orderInfo.id)"
         >
@@ -274,7 +266,7 @@
   import PickUpVerify from '@/pages/order/pickUpVerify.vue';
 
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const headerBg = sheep.$url.css('/static/img/shop/order/order_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/order/order_bg.png');
 
   const state = reactive({
     orderInfo: {},
@@ -455,7 +447,7 @@
     color: rgba(#fff, 0.9);
     width: 100%;
     background: v-bind(headerBg) no-repeat,
-      linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
+    linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
     box-sizing: border-box;
 
@@ -571,6 +563,7 @@
         font-size: 28rpx;
         color: #333;
         flex: 1;
+		
       }
     }
   }
@@ -603,8 +596,9 @@
 
       .detail {
         font-size: 28rpx;
-        color: #333;
+        color:var(--ui-BG-Main);
         font-family: OPPOSANS;
+		
       }
     }
 
@@ -623,7 +617,7 @@
         font-size: 26rpx;
         font-family: OPPOSANS;
         line-height: normal;
-        color: $red;
+        color: var(--ui-BG-Main);
       }
     }
   }
@@ -639,12 +633,12 @@
     .cancel-btn {
       width: 160rpx;
       height: 60rpx;
-      background: #eeeeee;
+      //background: #eeeeee;
       border-radius: 30rpx;
       margin-right: 20rpx;
       font-size: 26rpx;
       font-weight: 400;
-      color: #333333;
+      //color: #333333;
     }
 
     .pay-btn {

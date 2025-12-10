@@ -84,10 +84,9 @@
     <su-fixed bottom placeholder>
       <view class="ss-p-x-20 ss-p-b-40">
         <button
-          class="loginout-btn ss-reset-button ui-BG-Main ui-Shadow-Main"
+          class="ui-BG-Main loginout-btn"
           @tap="onLogout"
-          v-if="isLogin"
-        >
+          v-if="isLogin">
           退出登录
         </button>
       </view>
@@ -214,6 +213,7 @@
     height: 80rpx;
     border-radius: 40rpx;
     font-size: 30rpx;
+	color: #fff;
   }
 
   .list-border {

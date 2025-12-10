@@ -104,7 +104,7 @@
     <!-- 操作区 -->
     <s-empty
       v-if="isEmpty(state.info) && state.loading"
-      icon="/static/order-empty.png"
+      icon="/static/images/order-empty.png"
       text="暂无该订单售后详情"
     />
     <su-fixed bottom placeholder bg="bg-white" v-if="!isEmpty(state.info)">
@@ -147,7 +147,7 @@
   import AfterSaleApi from '@/sheep/api/trade/afterSale';
 
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
-  const headerBg = sheep.$url.css('/static/img/shop/order/order_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/order/order_bg.png');
   const state = reactive({
     id: 0, // 售后编号
     info: {}, // 收货信息
@@ -225,7 +225,7 @@
     width: 100%;
     height: 190rpx;
     background: v-bind(headerBg) no-repeat,
-      linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
+    linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
     background-size: 750rpx 100%;
     padding-left: 72rpx;
 
@@ -314,7 +314,7 @@
       font-size: 28rpx;
       font-family: OPPOSANS;
       font-weight: 500;
-      color: #ff3000;
+      color: var(--ui-BG-Main);
     }
   }
 
@@ -375,5 +375,15 @@
       font-weight: 400;
       color: rgba(51, 51, 51, 1);
     }
+	
+	.contcat-btn {
+	  width: 336rpx;
+	  line-height: 74rpx;
+	  background: var(--ui-BG-Main-light);
+	  border-radius: 38rpx;
+	  font-size: 28rpx;
+	  font-weight: 400;
+	  color: var(--ui-BG-Main);
+	}
   }
 </style>

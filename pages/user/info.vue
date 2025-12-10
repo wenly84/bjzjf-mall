@@ -135,21 +135,21 @@
         <view v-if="'WechatOfficialAccount' === sheep.$platform.name" class="ss-flex ss-col-center">
           <image
             class="list-img"
-            :src="sheep.$url.static('/static/img/shop/platform/WechatOfficialAccount.png')"
+            :src="sheep.$url.static('/static/image/mall/platform/WechatOfficialAccount.png')"
           />
           <text class="list-name">微信公众号</text>
         </view>
         <view v-if="'WechatMiniProgram' === sheep.$platform.name" class="ss-flex ss-col-center">
           <image
             class="list-img"
-            :src="sheep.$url.static('/static/img/shop/platform/WechatMiniProgram.png')"
+            :src="sheep.$url.static('/static/image/mall/platform/WechatMiniProgram.png')"
           />
           <text class="list-name">微信小程序</text>
         </view>
         <view v-if="'App' === sheep.$platform.name" class="ss-flex ss-col-center">
           <image
             class="list-img"
-            :src="sheep.$url.static('/static/img/shop/platform/wechat.png')"
+            :src="sheep.$url.static('/static/image/mall/platform/wechat.png')"
           />
           <text class="list-name">微信开放平台</text>
         </view>

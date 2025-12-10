@@ -13,10 +13,9 @@
         class="model-content ss-m-l-20"
         scroll-y
         :scroll-with-animation="false"
-        :enable-back-to-top="true"
-      >
+        :enable-back-to-top="true">
         <view v-for="(item, index) in state.orderInfo.promo_infos" :key="index">
-          <view class="ss-flex ss-m-b-40 subtitle">
+          <view class="ss-flex ss-m-b-40 subtitle" >
             <view>共{{ item.goods_ids.length }}件，</view>
             <view v-if="item.activity_type === 'full_discount'">
               满{{ item.discount_rule.full }}打{{ item.discount_rule.discount }}折,已减
@@ -109,6 +108,6 @@
     color: #333333;
   }
   .price-text {
-    color: #ff3000;
+    color: var(--ui-BG-Main);
   }
 </style>

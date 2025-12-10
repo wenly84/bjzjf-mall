@@ -12,39 +12,41 @@
           </swiper>
         </uni-swiper-dot>
         <view class="log-card-msg">
-          <!-- TODO 智匠坊科技：优化点：展示状态 -->
-          <!--          <view class="ss-flex ss-m-b-8">-->
-          <!--            <view>物流状态：</view>-->
-          <!--            <view class="warning-color">{{ state.info.status_text }}</view>-->
-          <!--          </view>-->
+          <!-- 显示物流状态
+          <view class="ss-flex ss-m-b-8">
+            <view>物流状态：</view>
+            <view class="warning-color">{{ state.info.status_text || '暂无物流信息' }}</view>
+          </view>
+		   -->
           <view class="ss-m-b-8">快递单号：{{ state.info.logisticsNo }}</view>
           <view>快递公司：{{ state.info.logisticsName }}</view>
         </view>
       </view>
 
       <!-- 物流轨迹 -->
-      <view class="log-content ss-m-20 ss-r-10">
-        <view
-          class="log-content-box ss-flex"
-          v-for="(item, index) in state.tracks"
-          :key="item.title"
-        >
+      <view class="log-content ss-m-20 ss-r-10" v-if="state.tracks.length > 0">
+        <view class="log-content-box ss-flex" v-for="(item, index) in state.tracks" :key="item.title">
           <view class="log-icon ss-flex-col ss-col-center ss-m-r-20">
             <text class="cicon-title" />
             <view v-if="state.tracks.length - 1 !== index" class="line" />
           </view>
           <view class="log-content-msg">
-            <!-- TODO 智匠坊科技：优化点：展示状态 -->
-            <!--            <view class="log-msg-title ss-m-b-20">-->
-            <!--              {{ item.status_text }}-->
-            <!--            </view>-->
-            <view class="log-msg-desc ss-m-b-16">{{ item.content }}</view>
+            <view class="log-msg-title ss-m-b-20">
+              {{ item.status_text || '暂无状态' }}
+            </view>
+            <view class="log-msg-desc ss-m-b-16">{{ item.content || '暂无详细信息' }}</view>
             <view class="log-msg-date ss-m-b-40">
-              {{ sheep.$helper.timeFormat(item.time, 'yyyy-mm-dd hh:MM:ss') }}
+              {{ sheep.$helper.timeFormat(item.time || new Date(), 'yyyy-mm-dd hh:MM:ss') }}
             </view>
           </view>
         </view>
       </view>
+      <!-- 如果没有轨迹数据 -->
+      <view v-if="state.tracks.length === 0 && !state.errorMessage" class="no-tracks ss-text-center">
+        无法获取物流信息，请联系商家确认!
+      </view>
+	  
+	  
     </view>
   </s-layout>
 </template>
@@ -72,10 +74,28 @@
     return array;
   });
 
-  async function getExpressDetail(id) {
-    const { data } = await OrderApi.getOrderExpressTrackList(id);
-    state.tracks = data.reverse();
-  }
+	async function getExpressDetail(id) {
+	  try {
+		const { data, code } = await OrderApi.getOrderExpressTrackList(id);
+		if (code !== 0) {
+		  // 处理获取失败的情况
+		  uni.showToast({
+			title: '无法获取物流信息，请联系商家确认!',
+			icon: 'none',
+		  });
+		  state.tracks = [];
+		  return;
+		}
+		state.tracks = data.reverse();
+	  } catch (error) {
+		// 网络请求或其他错误处理
+		uni.showToast({
+		  title: '网络异常，请检查您的网络连接',
+		  icon: 'none',
+		});
+	  }
+	}
+
 
   async function getOrderDetail(id) {
     const { data } = await OrderApi.getOrder(id);
@@ -159,4 +179,13 @@
       }
     }
   }
+  /* 没有物流轨迹的提示 */
+  .no-tracks {
+    color: #999999;
+    font-size: 26rpx;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 20rpx;
+  }
 </style>
+

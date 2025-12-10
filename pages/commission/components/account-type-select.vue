@@ -11,7 +11,7 @@
             class="container-list ss-p-l-34 ss-p-r-24 ss-flex ss-col-center ss-row-center"
             v-for="(item, index) in typeList"
             :key="index"
-          >
+			 v-show="methods.includes(parseInt(item.value))">
             <view class="container-icon ss-flex ss-m-r-20">
               <image :src="sheep.$url.static(item.icon)" />
             </view>
@@ -20,7 +20,7 @@
               :value="item.value"
               color="var(--ui-BG-Main)"
               :checked="item.value === state.currentValue"
-              :disabled="!methods.includes(parseInt(item.value))"
+              :disabled="!methods.includes(parseInt(item.value))"			 
             />
           </label>
         </radio-group>
@@ -58,22 +58,22 @@
 
   const typeList = [
     {
-      // icon: '/static/img/shop/pay/wechat.png', // TODO 智匠坊科技：后续给个 icon
+      icon: '/static/image/mall/pay/wallet.png',
       title: '钱包余额',
       value: '1',
     },
     {
-      icon: '/static/img/shop/pay/bank.png',
+      icon: '/static/image/mall/pay/bank.png',
       title: '银行卡转账',
       value: '2',
     },
     {
-      icon: '/static/img/shop/pay/wechat.png',
+      icon: '/static/image/mall/pay/wechat.png',
       title: '微信零钱',
       value: '3',
     },
     {
-      icon: '/static/img/shop/pay/alipay.png',
+      icon: '/static/image/mall/pay/alipay.png',
       title: '支付宝账户',
       value: '4',
     },

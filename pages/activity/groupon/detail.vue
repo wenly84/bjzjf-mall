@@ -24,7 +24,7 @@
           :img="state.data.headRecord.picUrl"
           :title="state.data.headRecord.spuName"
           :price="state.data.headRecord.combinationPrice"
-          priceColor="#E1212B"
+          priceColor="var(--ui-BG-Main)"
           @tap="
             sheep.$router.go('/pages/goods/groupon', {
               id: state.data.headRecord.activityId,
@@ -122,7 +122,7 @@
             :key="item"
           >
             <image
-              :src="sheep.$url.static('/static/img/shop/avatar/unknown.png')"
+              :src="sheep.$url.static('/static/image/mall/avatar/unknown.png')"
               class="avatar-img"
             ></image>
           </view>
@@ -195,7 +195,10 @@
       </view>
     </view>
 
-    <s-empty v-if="!state.data && !state.loading" icon="/static/goods-empty.png" />
+    <s-empty
+      v-if="!state.data && !state.loading"
+      icon="/static/images/goods-empty.png"
+    />
   </s-layout>
 </template>
 
@@ -209,7 +212,7 @@
   import CombinationApi from '@/sheep/api/promotion/combination';
   import SpuApi from '@/sheep/api/product/spu';
 
-  const headerBg = sheep.$url.css('/static/img/shop/user/withdraw_bg.png');
+  const headerBg = sheep.$url.css('/static/image/mall/user/withdraw_bg.png');
   const statusBarHeight = sheep.$platform.device.statusBarHeight * 2;
   const state = reactive({
     data: {}, // 拼团详情
@@ -346,11 +349,9 @@
   .recharge-box {
     position: relative;
     margin-bottom: 120rpx;
-    background: v-bind(headerBg) center/750rpx 100% no-repeat,
-      linear-gradient(115deg, #f44739 0%, #ff6600 100%);
+    background: v-bind(headerBg) center/750rpx 100% no-repeat, linear-gradient(115deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
     border-radius: 0 0 5% 5%;
     height: 100rpx;
-
     .goods-box {
       width: 710rpx;
       border-radius: 20rpx;
@@ -388,7 +389,7 @@
       padding: 0 4rpx;
       margin-left: 16rpx;
       height: 40rpx;
-      background: linear-gradient(90deg, #ff6000 0%, #fe832a 100%);
+      background: linear-gradient(90deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
       border-radius: 6rpx;
     }
     .countdown-num {
@@ -398,7 +399,7 @@
       color: #ffffff;
       width: 40rpx;
       height: 40rpx;
-      background: linear-gradient(90deg, #ff6000 0%, #fe832a 100%);
+      background: linear-gradient(90deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
       border-radius: 6rpx;
     }
   }
@@ -406,6 +407,7 @@
   .countdown-box {
     // height: 364rpx;
     background: #ffffff;
+	color: var(--ui-BG-Main);
     border-radius: 10rpx;
     box-sizing: border-box;
 
@@ -415,17 +417,17 @@
       color: #333333;
 
       .cicon-check-round {
-        color: #42b111;
+        color: var(--ui-BG-Main);
         margin-right: 24rpx;
       }
 
       .cicon-info {
-        color: #d71e08;
+        color: var(--ui-BG-Main);
         margin-right: 24rpx;
       }
 
       .num {
-        color: #ff6000;
+        color: var(--ui-BG-Main);
       }
     }
 
@@ -480,7 +482,8 @@
     height: 70rpx;
     border: 2rpx solid #dfdfdf;
     border-radius: 35rpx;
-    color: #999999;
+    color: $white;
+	background: linear-gradient(90deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
     font-weight: 500;
     font-size: 26rpx;
     line-height: normal;
@@ -500,7 +503,7 @@
   .join-btn {
     width: 668rpx;
     height: 70rpx;
-    background: linear-gradient(90deg, #ff6000 0%, #fe832a 100%);
+    background: linear-gradient(90deg, var(--ui-BG-Main) 0%, var(--ui-BG-Main-gradient) 100%);
     box-shadow: 0px 8rpx 6rpx 0px rgba(255, 104, 4, 0.22);
     border-radius: 35rpx;
     color: #fff;

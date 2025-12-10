@@ -216,7 +216,7 @@ http.interceptors.response.use(
   },
 );
 
-// Axios 无感知刷新令牌，参考 https://www.dashingdog.cn/article/11 与 https://segmentfault.com/a/1190000020210980 实现
+// Axios 无感知刷新令牌
 let requestList = []; // 请求队列
 let isRefreshToken = false; // 是否正在刷新中
 const refreshToken = async (config) => {

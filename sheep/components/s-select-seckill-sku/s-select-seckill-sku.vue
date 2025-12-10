@@ -306,7 +306,7 @@
       width: 100%;
       height: 80rpx;
       border-radius: 40rpx;
-      background: linear-gradient(90deg, #ff5854, #ff2621);
+      background: linear-gradient(to right, var(--ui-BG-Main), var(--ui-BG-Main-gradient)) !important;
       color: #fff;
     }
   }
@@ -346,7 +346,7 @@
       .price-text {
         font-size: 30rpx;
         font-weight: 500;
-        color: $red;
+        color: var(--ui-BG-Main);
         font-family: OPPOSANS;
 
         &::before {
@@ -389,7 +389,7 @@
         }
 
         .checked-btn {
-          background: linear-gradient(90deg, #ff5854, #ff2621);
+          background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
           font-weight: 500;
           color: #ffffff;
         }
@@ -425,7 +425,7 @@
       font-size: 24rpx;
       font-weight: 500;
       line-height: normal;
-      color: #ff6000;
+      color: var(--ui-BG-Main);
       width: 86rpx;
       display: flex;
       justify-content: center;

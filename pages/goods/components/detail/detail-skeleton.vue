@@ -159,6 +159,7 @@
         font-size: 28rpx;
         border-radius: 40rpx 0 0 40rpx;
         background-color: var(--ui-BG-Main-light);
+        //background-color:#f2f2f2;
         color: var(--ui-BG-Main);
       }
 
@@ -167,7 +168,6 @@
         height: 72rpx;
         font-weight: 500;
         font-size: 28rpx;
-
         border-radius: 0 40rpx 40rpx 0;
         background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
         color: $white;

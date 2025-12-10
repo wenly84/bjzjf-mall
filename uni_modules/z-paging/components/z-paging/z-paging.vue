@@ -342,4 +342,7 @@ by ZXLee
 <style scoped>
 	@import "./css/z-paging-main.css";
 	@import "./css/z-paging-static.css";
+	.zp-virtual-placeholder {
+		    margin-bottom: 110rpx;
+	}
 </style>

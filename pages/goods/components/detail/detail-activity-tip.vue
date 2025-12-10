@@ -11,13 +11,13 @@
             <view class="ss-m-r-16">
               <image
                 v-if="activity.type === 1"
-                :src="sheep.$url.static('/static/img/shop/goods/seckill-icon.png')"
+                :src="sheep.$url.static('/static/image/mall/goods/seckill-icon.png')"
                 class="activity-icon"
               />
               <!-- TODO 智匠坊科技：拼团 -->
               <image
                 v-else-if="activity.type === 3"
-                :src="sheep.$url.static('/static/img/shop/goods/groupon-icon.png')"
+                :src="sheep.$url.static('/static/image/mall/goods/groupon-icon.png')"
                 class="activity-icon"
               />
             </view>
@@ -34,8 +34,8 @@
   import sheep from '@/sheep';
 
   // TODO 智匠坊科技：这里要迁移下；
-  const seckillBg = sheep.$url.css('/static/img/shop/goods/seckill-tip-bg.png');
-  const grouponBg = sheep.$url.css('/static/img/shop/goods/groupon-tip-bg.png');
+  const seckillBg = sheep.$url.css('/static/image/mall/goods/seckill-tip-bg.png');
+  const grouponBg = sheep.$url.css('/static/image/mall/goods/groupon-tip-bg.png');
 
   const props = defineProps({
     activityList: {
@@ -80,7 +80,7 @@
       background: #ffffff;
       border-radius: 16rpx;
       font-weight: 500;
-      color: #ff6000;
+      color: var(--ui-BG-Main);
       font-size: 24rpx;
       line-height: normal;
     }

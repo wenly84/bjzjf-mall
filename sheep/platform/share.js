@@ -97,10 +97,12 @@ const buildSpmQuery = (params) => {
 };
 
 // 构造页面分享参数: 所有的分享都先到首页进行 spm 参数解析
-const buildSpmPath = (query) => {
+const buildSpmPath = (query, params) => {
   // 默认是主页，页面 page，例如 pages/index/index，根路径前不要填加 /，
   // 不能携带参数（参数请放在scene字段里），如果不填写这个字段，默认跳主页面。scancode_time为系统保留参数，不允许配置
-  return `pages/index/index`;
+  
+  // 存在 params 拼到链接后面
+  return params ? `pages/index/index?${params}` : `pages/index/index`;
 };
 
 // 构造分享链接

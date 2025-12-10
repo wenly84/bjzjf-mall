@@ -54,6 +54,7 @@
     buttonColor: {
       type: String,
       default: 'var(--ui-BG-Main)',
+      //default: '#ff6000',
     },
   });
 

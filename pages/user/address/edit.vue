@@ -35,16 +35,14 @@
           name="areaName"
           label="省市区"
           @tap="state.showRegion = true"
-          class="form-item"
-        >
+          class="form-item">
           <uni-easyinput
             v-model="state.model.areaName"
             disabled
             :inputBorder="false"
             :styles="{ disableColor: '#fff', color: '#333' }"
             placeholderStyle="color:#BBBBBB;font-size:30rpx;font-weight:400;line-height:normal"
-            placeholder="请选择省市区"
-          >
+            placeholder="请选择省市区">
             <template v-slot:right>
               <uni-icons type="right" />
             </template>
@@ -291,7 +289,7 @@
       width: 710rpx;
       height: 80rpx;
       border-radius: 40rpx;
-      background: linear-gradient(90deg, var(--ui-BG-Main), var(--ui-BG-Main-gradient));
+      background: var(--ui-BG-Main);
       color: $white;
     }
 
